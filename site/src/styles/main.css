@@ -1,0 +1,338 @@
+@import './normalize.css';
+@import './font.css';
+@import './variables.css';
+
+html,
+body {
+    font-family: OpenDyslexic, Unitblock, Alterbeing;
+
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+    color: var(--text-color);
+
+    max-height: calc(100vh - (var(--gap) * 2));
+    margin: var(--gap);
+
+    background-image: url('../images/tile.png');
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+body {
+    display: flex;
+    min-height: calc(100vh - (var(--gap) * 2));
+    max-height: inherit;
+    text-align: left;
+    cursor: default;
+    overflow-wrap: break-word;
+    line-height: 1.3rem;
+}
+
+hr {
+    color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    width: 100%; /* i wish hrs flexed :\ */
+    border: 1px solid;
+}
+footer {
+    width: 100%;
+}
+
+h1 {
+    line-height: 1.6rem;
+}
+
+footer,
+h2 {
+    color: #8f8299;
+    font-size: 0.8rem;
+}
+
+h2,
+h3 {
+    margin: var(--gap) 0px;
+}
+
+p {
+    word-wrap: break-word;
+}
+
+code {
+    color: var(--tertiary-color);
+    font-family: inherit;
+}
+/*
+    Used for lists
+*/
+pre {
+    white-space: pre-line;
+    font: inherit;
+    margin: var(--gap) 0px;
+}
+
+a {
+    text-decoration: unset;
+    color: var(--links);
+    filter: brightness(100%);
+}
+
+a:hover,
+a:focus {
+    /* color: var(--link-hover-color); */
+    filter: brightness(var(--dim));
+}
+
+/* Style the scrollbar if supported */
+@supports (scrollbar-color: auto) {
+    html,
+    body {
+        scrollbar-color: var(--secondary-color) var(--background-color);
+    }
+}
+@supports selector(::-webkit-scrollbar) {
+    /* Track */
+    ::-webkit-scrollbar,
+    ::-webkit-scrollbar-track {
+        background: var(--background-color);
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: var(--secondary-color);
+        border-radius: var(--border-radius);
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+.hov,
+a {
+    transition: filter var(--transition-quick);
+}
+
+.hov:hover,
+.hov:focus,
+.hov:focus-visible {
+    filter: brightness(var(--dim));
+}
+.hov:focus-visible {
+    outline: none;
+}
+
+.hov:active {
+    color: var(--tertiary-color);
+    filter: brightness(100%);
+}
+
+.emote {
+    padding-inline: 0.1rem;
+    max-height: 1rem;
+    border-radius: var(--border-radius);
+}
+.icon {
+    height: 1rem !important;
+    vertical-align: text-bottom;
+    margin-inline-end: calc(var(--gap) / 2);
+}
+.icon:last-child {
+    margin-inline-end: 0px;
+}
+
+#header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#header > div {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+#header h1 {
+    margin: 0px;
+    flex: 1;
+}
+#header h2 {
+    margin: 0px;
+    font-weight: normal;
+    font-size: 0.6rem;
+    line-height: 0.9rem;
+    max-width: 30%;
+    text-align: end;
+    color: var(--secondary-color);
+}
+#header hr {
+    border: 3px solid;
+}
+#gtainer {
+    display: flex;
+    flex-direction: row;
+    gap: var(--gap);
+    flex: 1;
+    width: 100%;
+    min-height: 44vh;
+}
+
+#pane,
+#menu {
+    flex: 1;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    min-height: inherit;
+    max-height: inherit;
+}
+#pane {
+    max-width: 50%;
+    padding: 0rem var(--gap) var(--gap) calc(var(--gap) * 2);
+    border-radius: var(--border-radius);
+    background-image: var(--gapped-border);
+    overflow-y: scroll;
+    /* animated ver */
+    /* background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3cstyle type='text/css'%3e rect %7b stroke-dashoffset: 0; animation: dash 3s linear infinite;%7d %40keyframes dash %7b to %7b stroke-dashoffset: 168;%7d %7d %3c/style%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%23AC7D69FF' stroke-width='3' stroke-dasharray='12,66,6' stroke-dashoffset='0' stroke-linecap='butt' /%3e%3c/svg%3e"); */
+}
+#pane > div {
+    display: inherit;
+    flex-direction: column;
+    gap: inherit;
+}
+#pane p {
+    margin: 0.1rem;
+}
+#pane .hov[onclick] {
+    color: var(--tertiary-color);
+}
+#pane .hov > span:nth-child(even) {
+    color: var(--text-color);
+}
+#pane .hov > span:nth-child(odd) {
+    color: var(--tertiary-color);
+}
+/* remove list styling */
+#menu {
+    list-style: none;
+    padding-inline-start: 0px;
+}
+
+.menu-link {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.menu-link > .cursor-blink,
+.menu-link > .cursor-blink {
+    display: none;
+}
+.menu-link:hover > .cursor-blink,
+.menu-link:focus > .cursor-blink {
+    display: inline;
+}
+/* menu icon */
+.menu-link:hover::before,
+.menu-link:focus::before {
+    /* content: '\e005\00a0'; */
+    color: var(--tertiary-color);
+    margin-left: -1rem;
+}
+
+/* caret blink */
+.cursor-blink {
+    animation: cursor-blink 1.2s linear infinite;
+}
+
+/* mobile help */
+/* dropdown */
+#dropdown-container,
+#dropdown {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+#dropdown-container {
+    border-radius: var(--border-radius);
+    padding: 0.1rem calc(var(--gap) * 2);
+}
+#dropdown > input,
+#dropdown > label {
+    display: none;
+}
+
+#pawprint span:nth-child(even) {
+    color: var(--text-color);
+}
+#pawprint span:nth-child(odd) {
+    color: var(--tertiary-color);
+}
+
+footer > .section::after {
+    content: '\e000';
+}
+footer > .section:last-child::after {
+    content: unset;
+}
+
+@media screen and (max-width: 50rem), (pointer: coarse) {
+    .copyable::after {
+        content: ' (tap to copy!)';
+    }
+}
+/* i hate mobile css */
+@media (max-width: 40rem) {
+    hr {
+        width: 95vw;
+    }
+    #gtainer,
+    #pane,
+    #menu {
+        flex: 0;
+    }
+    #gtainer {
+        flex-direction: column;
+        gap: calc(var(--gap) * 2);
+        width: 95vw;
+        min-height: auto;
+    }
+    #dropdown-container {
+        background-image: var(--gapped-border);
+    }
+    #dropdown,
+    #dropdown > label {
+        display: flex;
+        flex: 1;
+    }
+    #menu {
+        display: none;
+        z-index: 2;
+    }
+    #pane {
+        max-width: unset;
+        overflow: auto;
+    }
+    /*#dropdown input:checked+label {
+        pointer-events: none;
+    }
+    #dropdown:focus-within input:checked+label {
+        pointer-events: all;
+    }
+    #dropdown label[for="dropdownlow"] {
+        display: block !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        cursor: pointer;
+        transition: all var(--transition-quick);
+    }*/
+
+    #dropdown-container/*:focus-within*/ input:checked + label + #menu {
+        display: flex !important;
+    }
+    #dropdown-container/*:focus-within*/ input:checked + label::before {
+        content: '›'; /* placeholder */
+        padding-inline-end: 0.2rem;
+    }
+}

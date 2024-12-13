@@ -1,0 +1,38 @@
+#gallery {
+    width: 100%;
+    columns: 3;
+    column-gap: var(--gap);
+}
+/* #headerlinks {
+    display: inline-block !important;
+}*/
+
+.img-desc {
+    font-size: 0.8rem;
+    line-height: 1.1rem;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.img-container {
+    display: table; /* needed because firefox splits block elements */
+    height: fit-content;
+    width: fit-content;
+    padding-bottom: calc(var(--gap) * 3);
+}
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+}
+
+@media (max-width: 40rem) {
+    #gallery {
+        columns: 2;
+    }
+}
+@media (max-width: 20rem) {
+    #gallery {
+        columns: 1;
+    }
+}

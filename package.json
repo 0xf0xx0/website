@@ -1,0 +1,12 @@
+{
+    "author": "0xf0xx0",
+    "license": "AGPL-3.0-or-later",
+    "scripts": {
+        "build": "node ./build.js"
+    },
+    "dependencies": {
+        "@minify-html/node": "^0.15.0",
+        "chalk": "4.1.2",
+        "handlebars": "^4.7.8"
+    }
+}

@@ -1,0 +1,61 @@
+<!--
+    developed on and for firefox
+    if something doesnt work in chrome/safari, too bad
+-->
+<html>
+    <head>
+        <title>{{tabtitle}}</title>
+        <link rel="stylesheet" type="text/css" href="/src/styles/main.css" />
+        {{{stylesheets}}}
+        {{! Meta tags }}
+        <meta charset='utf-8' />
+        <meta name='number' content='3373' />
+        <meta name='ship' content='Assegai' />
+        <meta name='arc' content='3'/>
+
+        {{! OpenGraph }}
+        {{! <meta name="og:site_name" content=""> }}
+        <meta name='og:title' content='{{tabtitle}}' />
+        <meta name='og:description' content='{{desc}}' />
+        <meta name='og:url' content='https://0xf0xx0.eth.limo/{{page}}' />
+        {{#if image}}
+            <meta name='twitter:card' content='summary_large_image' />
+            <meta name='og:image' content='{{image}}' />
+            {{#if imageDims}}
+                <meta name='og:image:width' content='{{imageDims.width}}' />
+                <meta name='og:image:height' content='{{imageDims.height}}' />
+            {{/if}}
+        {{/if}}
+        <meta name='og:type' content='website' />
+        <meta name='theme-color' content='{{themecolor}}' data-react-helmet='true' />
+
+        {{! standard }}
+        <meta name='author' content='{{author}}' />
+        <meta name='description' content='{{desc}}' />
+        <meta name='generator' content='Foxpower' />
+        <meta name='keywords' content='{{keywords}}' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+
+        {{! favicon }}
+        <link rel='mask-icon' color='{{themecolor}}' href='/safari-pinned-tab.svg?v=1.0.0' />
+        <link rel='shortcut icon' href='/favicon.ico?v=1.0.0' />
+        <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png?v=1.0.0' />
+        <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png?v=1.0.0' />
+        <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png?v=1.0.0' />
+
+        <!-- util -->
+        <!--
+            imagine needing to import 10-30mb of js
+            could never be me
+            ...just ignore the 500gb of onionring js
+        -->
+        <script src='src/scripts/util.js' defer></script>
+        {{! <script src="https://kit.fontawesome.com/090ca49637.js" defer crossorigin="anonymous"></script> }}
+
+    </head>
+    <body>
+        {{{body}}}
+        <script src='src/scripts/cgol.js' async></script>
+    </body>
+    <!-- robots build robots -->
+</html>

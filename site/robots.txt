@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /_redirects
+Disallow: /.well-known/
+Disallow: /files/
+Disallow: /src/

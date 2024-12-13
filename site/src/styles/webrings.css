@@ -1,0 +1,83 @@
+.ring-container {
+    display: inline-flex;
+    flex-direction: row;
+    gap: var(--gap);
+    flex-wrap: wrap;
+}
+.webring {
+    display: flex;
+    justify-content: center;
+    /* you know who else is important? */
+    width: fit-content !important;
+    height: fit-content !important;
+    margin: inherit !important;
+}
+
+a.webring-prev::before {
+    content: '«';
+}
+a.webring-next::after {
+    content: '»';
+}
+a.webring-random::before {
+    content: '¿';
+}
+a.webring-random::after {
+    content: '?';
+}
+
+/* linuxring styling */
+#linuxring > table {
+    border: 1px solid var(--text-color);
+    border-radius: var(--border-radius);
+}
+#linuxring .webring-info > br {
+    display: none;
+}
+/* tux */
+#linuxring .webring-info > .webring-links > a > img {
+    width: 3ex;
+    margin-bottom: -0.6ex;
+}
+
+/* ahsc */
+#ahsc {
+    margin: unset !important;
+    padding: unset !important;
+    width: fit-content !important;
+}
+#ahsc table {
+    font-size: inherit !important;
+    width: fit-content !important;
+    height: fit-content !important;
+}
+#ahsc table tr td {
+    padding: var(--gap) !important;
+}
+.ahsc-info br {
+    display: none !important;
+}
+.ahsc-links img {
+    max-height: 2ex !important; /* watch this get deprecated */
+    margin-bottom: -0.5ex !important;
+}
+
+/* pls dont ab00s !important */
+body #xenicRing {
+    margin: inherit !important;
+}
+body #xenicRing .webring-head {
+    display: none !important;
+}
+
+/* mobile */
+@media (max-width: 40rem) {
+    .ring-container {
+        text-align: center;
+        justify-content: center;
+        flex: 0;
+    }
+    .webring-title {
+        display: inline-block;
+    }
+}

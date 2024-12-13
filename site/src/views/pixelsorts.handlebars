@@ -1,0 +1,36 @@
+<div id='header'>
+    <div>
+
+        <h1>{{tabtitle}}</h1>
+        <h2 id='headerlinks'>
+            {{! i really want no whitespace }}
+            <span class='section'>{{{wrappedlink 'home' '/'}}}{{{wrappedlink
+                    'more pixelsorting results & masks'
+                    'https://foxuments.0xf0xx0.eth.limo/pixelsort-gens/'
+                }}}</span><br />
+            <span class='section'>other sorters
+                <span>{{{wrappedlink 'ikatch.net' 'https://ikatch.net/pixelsort'}}}</span>{{!
+        }}<span
+                >{{{wrappedlink
+                        'jeffreythompson.org'
+                        'https://jeffreythompson.org/blog/?s=pixel+sort'
+                    }}}</span>{{!
+        }}<span>{{{wrappedlink
+                        'r/pixelsorting'
+                        'https://troddit.com/r/pixelsorting'
+                    }}}</span>{{!
+        }}</span><br />
+            <span class='section'>{{{wrappedlink
+                    'cc-by-nc-sa 4.0'
+                    'https://creativecommons.org/licenses/by-nc-sa/4.0'
+                }}}</span>
+            <span class='section'>reload page if images don't finish loading</span>
+        </h2>
+    </div>
+    <hr />
+</div>
+<div id='gallery'>
+    {{{populategallery galleryImages}}}
+</div>
+<hr />
+<footer>{{{wrappedlink 'home' '/'}}}</footer>
