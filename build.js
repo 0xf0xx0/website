@@ -106,7 +106,7 @@ const ctx = {
         stylesheets: ['<link rel="stylesheet" type="text/css" href="/src/styles/gallery.css" />'],
         galleryImages: galleries.pixelsorts,
         keywords: ['pixelsorting', 'pixelsort', 'glitch art'],
-        image: 'https://foxuments.0xf0xx0.eth.limo/pixelsort-gens/boat-on-lake/final.jpg',
+        image: 'https://0xf0xuments.0xf0xx0.eth.limo/pixelsort-gens/boat-on-lake/final.jpg',
         imageDims: { width: 1000, height: 1500 },
     },
     eve: {
@@ -115,7 +115,7 @@ const ctx = {
         stylesheets: ['<link rel="stylesheet" type="text/css" href="/src/styles/gallery.css" />'],
         galleryImages: galleries.eve,
         keywords: ['eve online', 'screenshots'],
-        image: 'https://foxuments.0xf0xx0.eth.limo/eve-screenshots/CataclysmicVariable.png',
+        image: 'https://0xf0xuments.0xf0xx0.eth.limo/eve-screenshots/CataclysmicVariable.png',
         imageDims: { width: 1280, height: 800 },
     },
     flags: {

@@ -1,5 +1,5 @@
 const pixelsorts = {
-    tld: 'https://foxuments.0xf0xx0.eth.limo/pixelsort-gens',
+    tld: 'https://0xf0xuments.0xf0xx0.eth.limo/pixelsort-gens',
     images: [
         { url: '/misc/TheriaNoise.png', desc: '&#xe000;⎇' },
         {
@@ -108,7 +108,7 @@ const pixelsorts = {
     ],
 }
 const eve = {
-    tld: 'https://foxuments.0xf0xx0.eth.limo/eve-screenshots',
+    tld: 'https://0xf0xuments.0xf0xx0.eth.limo/eve-screenshots',
     images: [
         { url: '/Docked.png', source: 'myself' },
         { url: '/CataclysmicVariable.png', source: 'myself' },
