@@ -77,24 +77,6 @@ function cgol(field = null, dims, wrap = false) {
 
     return newField
 }
-function printField(field) {
-    const fieldWidth = field.length
-    const fieldHeight = field[0].length
-    let str = ''
-    let coords = []
-    for (let i = 0; i < fieldWidth; i++) {
-        coords.push(`${i.toString().padStart(2, '0')}`)
-    }
-    str += `    ${coords.join(' ')}\n`
-    for (let i = 0; i < fieldHeight; i++) {
-        let line = []
-        for (let ii = 0; ii < fieldWidth; ii++) {
-            line.push(field[ii][i])
-        }
-        str += `${i.toString().padStart(2, ' ')} [ ${line.join('  ')} ]\n`
-    }
-    console.log(str.trimEnd())
-}
 function drawField(field, ctx) {
     const fieldWidth = field.length
     const fieldHeight = field[0].length
@@ -208,9 +190,6 @@ if (navigator) {
 }
 seedstring = seedstring.replace(/\s/g, '')
 seedField(seedstring, generateEmptyField(dims)).then((field) => {
-    printField(field)
-    // document.body.appendChild(canvas)
-
     let state = field
     let iters = 0
     /// lower thresh = less alive at the end
@@ -219,24 +198,21 @@ seedField(seedstring, generateEmptyField(dims)).then((field) => {
     window.addEventListener(
         'load',
         () => {
+            /// draw
+            drawField(state, ctx)
+            updateFavicon(canvas.toDataURL())
+
             const inter = setInterval(() => {
                 let oldstate = state
                 state = cgol(state, dims, dims, true)
                 /// keep going until we stabilize
                 drawField(state, ctx)
                 updateFavicon(canvas.toDataURL())
-                //printField(state)
                 if (compareStates(oldstate, state) < stopThreshold) {
-                    console.log(`stable after ${iters} iterations (${(iters * tickMS) / 1000}s)`)
-                    console.log(`seed: ${seedstring}`)
                     clearInterval(inter)
                 }
                 iters++
             }, tickMS)
-            /// draw
-            printField(state)
-            drawField(state, ctx)
-            updateFavicon(canvas.toDataURL())
         },
         false
     )

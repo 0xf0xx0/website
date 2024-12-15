@@ -85,7 +85,7 @@ const DEFAULT_CTX = {
 }
 const ctx = {
     index: {
-        tabtitle: 'From one realm to another.',
+        tabtitle: '⎇From one realm to another.',
         desc: 'on every level except physical, i am nonhuman.',
         stylesheets: ['<link rel="stylesheet" type="text/css" href="/src/styles/webrings.css" />'],
     },
