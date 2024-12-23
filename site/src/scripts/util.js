@@ -1,14 +1,3 @@
-function addBlankToLinks() {
-    const links = document.getElementsByTagName('a')
-    // MAYBE: ipns as well?
-    const thisDomain = 'https://0xf0xx0.eth.limo'
-    for (const a of links) {
-        if (a.href.startsWith('https://') && !a.href.startsWith(thisDomain)) {
-            a.target = '_blank' // open external links in a new tab
-        }
-    }
-}
-
 function getAllTextElms() {
     // not really *all* text elms, but the ones used on this site lol
     const textElems = [

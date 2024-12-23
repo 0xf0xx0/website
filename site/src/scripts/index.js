@@ -62,7 +62,6 @@ const menuAction = (ev) => {
     box.checked ? (box.checked = false) : null
 
     // re-exec on change
-    addBlankToLinks()
     //italiciseText()
 }
 const paneAction = (ev) => {
@@ -92,8 +91,8 @@ function activateMenu() {
 
 /// ok now do the thing
 try {
-    addBlankToLinks()
     activateMenu()
+    /// 000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f
     console.log(`
         0100 0000 0000 0000 0000 0000 0000 0000  ................
         0000 0000 0000 0000 0000 0000 0000 0000  ................
@@ -114,6 +113,7 @@ try {
         f355 04e5 1ec1 12de 5c38 4df7 ba0b 8d57  .U......\\8M....W
         8a4c 702b 6bf1 1d5f ac00 0000 00         .Lp+k.._.....
     `)
+    /// 0000000000000000000d656be18bb095db1b23bd797266b0ac3ba720b1962b1e
     console.log(`
         00e0 ff27 9ba7 2c6a 3f1e 81e6 2004 f991  ...'..,j?... ...
         dc12 b5af 3d97 58c1 8406 0300 0000 0000  ....=.X.........
@@ -134,6 +134,7 @@ try {
         3a16 f199 5057 c2ab 88ac 0000 0000 0000  :...PW..........
         0000 2f6a 24aa 21a9 edb7 4be1 52         ../j$.!...K.R
     `)
+    /// 000000000000000000003b1e8108e0d85ad0f698ded94360b27e0ca766682b4f
     console.log(`
         0000 0020 c95b 887f e72e 7a4e de37 66db  ... .[....zN.7f.
         a9f3 86db 543e ab0a fbdf 0b00 0000 0000  ....T>..........
@@ -153,11 +154,6 @@ try {
         1976 a914 c825 a1ec f2a6 830c 4401 620c  .v...%......D.b.
         3a16 f199 5057 c2ab 88ac 0000 0000 0000  :...PW..........
         0000 266a 24aa 21a9 ed56 fbd7 c2         ..&j$.!..V...
-    `)
-    console.log(`
-        000000000000000000003b1e8108e0d85ad0f698ded94360b27e0ca766682b4f
-        0000000000000000000ccaca16c648fc1a2dce9749af651f9bf3ab2e778980a9
-        0000000000000000000687bca986194dc2c1f949318629b44bb54ec0a94d8244
     `)
 } catch (e) {
     pane.innerText = errorCleaner(e)

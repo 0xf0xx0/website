@@ -3,21 +3,21 @@ const {minify} = require('@minify-html/node')
 const { readFileSync, writeFileSync, readdirSync } = require('node:fs')
 const { join } = require('node:path')
 const galleries = require('./galleries.js')
-const thisDomain = 'https://0xf0xx0.eth.limo'
-
-const wrappedLinkHelper = (text, url) => {
+const ourIPNS = "ipns://k51qzi5uqu5djge84e0oh3d7cy5l03130126g6kfxquex2wxrozshpdg8nd1sg"
+const wrappedLinkHelper = (text, url = "") => {
     let target = ''
-    if (url.startsWith('https://') && !url.startsWith(thisDomain)) {
-        target = '_blank' // open external links in a new tab
+    if (url !== ourIPNS && url.match(/^\w+?:\/\//ig)) {
+        target = 'target="_blank"' // open external links in a new tab
     }
 
-    return `&#xe007;<a href="${url}" target="${target}">${text}</a>&#xe008;`
+    return `&#xe007;<a href="${url}" ${target}>${text}</a>&#xe008;`
 }
 const prefixedLinkHelper = (text, url) => {
-    if (url.startsWith('https://') && !url.startsWith(thisDomain)) {
-        target = '_blank' // open external links in a new tab
+    let target = ''
+    if (url !== ourIPNS && url.match(/^\w+?:\/\//ig)) {
+        target = 'target="_blank"' // open external links in a new tab
     }
-    return `<a href="${url}" target="${target}">[ ${text} ]</a>`
+    return `<a href="${url}" ${target}>[ ${text} ]</a>`
 }
 handlebars.registerHelper('populategallery', (gallery) => {
     let galleryHTML = ''
