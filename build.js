@@ -86,8 +86,8 @@ const DEFAULT_CTX = {
 const ctx = {
     index: {
         tabtitle: '⎇From one realm to another.',
-        desc: 'on every level except physical, i am nonhuman.',
-        stylesheets: ['<link rel="stylesheet" type="text/css" href="/src/styles/webrings.css" />'],
+        desc: 'doin stuff on the internet',
+        stylesheets: ['<link rel="stylesheet" type="text/css" href="src/styles/webrings.css" />'],
     },
     'cyberspace-independence': {
         tabtitle: 'A Declaration of the Independence of Cyberspace',
@@ -103,7 +103,7 @@ const ctx = {
     pixelsorts: {
         tabtitle: 'Pixels Placed in (Dis)Order',
         desc: 'organic Home-grown free-range pixelsorts',
-        stylesheets: ['<link rel="stylesheet" type="text/css" href="/src/styles/gallery.css" />'],
+        stylesheets: ['<link rel="stylesheet" type="text/css" href="src/styles/gallery.css" />'],
         galleryImages: galleries.pixelsorts,
         keywords: ['pixelsorting', 'pixelsort', 'glitch art'],
         image: 'https://0xf0xuments.0xf0xx0.eth.limo/pixelsort-gens/boat-on-lake/final.jpg',
@@ -112,7 +112,7 @@ const ctx = {
     eve: {
         tabtitle: 'Screenshots in Space',
         desc: "When i'm not dyin, i'm killin and then dyin",
-        stylesheets: ['<link rel="stylesheet" type="text/css" href="/src/styles/gallery.css" />'],
+        stylesheets: ['<link rel="stylesheet" type="text/css" href="src/styles/gallery.css" />'],
         galleryImages: galleries.eve,
         keywords: ['eve online', 'screenshots'],
         image: 'https://0xf0xuments.0xf0xx0.eth.limo/eve-screenshots/CataclysmicVariable.png',
@@ -122,10 +122,10 @@ const ctx = {
         tabtitle: 'Unified-pride-flags Flag Previews',
         desc: 'Previews of the flags included in unified-pride-flags.',
         author: '@KonkenBonken, @0xf0xx0 (GitHub)',
-        stylesheets: ['<link rel="stylesheet" type="text/css" href="/src/styles/flags.css" />'],
-        keywords: ['unified', 'cli', 'pride flags', 'lgbtqia'],
+        stylesheets: ['<link rel="stylesheet" type="text/css" href="src/styles/flags.css" />'],
+        keywords: ['unified pride flags', 'cli pride flags', 'lgbtqia'],
     },
-    404: { tabtitle: 'Are You Lost? (404)', desc: 'Were you even Found?' },
+    404: { tabtitle: 'Are You Lost? (404)', desc: 'Were you ever Found?' },
 }
 function compileToHTML(page) {
     const template = readFileSync(`${viewsDir}/${page}`, 'utf-8')
@@ -162,19 +162,19 @@ function compileToHTML(page) {
     }
 }
 
-const pages = readdirSync(viewsDir)
+const views = readdirSync(viewsDir)
 
-for (const page of pages.filter((v) => v.endsWith('.handlebars'))) {
-    if ([layoutFileName, 'menus.handlebars'].includes(page)) {
+for (const view of views.filter((v) => v.endsWith('.handlebars'))) {
+    if ([layoutFileName].includes(view)) {
         continue
     }
-    const compiled = compileToHTML(page)
+    const page = compileToHTML(view)
     try {
         if (!DRY_RUN) {
-            const minified = minify(Buffer.from(compiled.content), {}).toString("utf8")
-            writeFileSync(`${siteDir}/${compiled.name}`, minified)
+            const minified = minify(Buffer.from(page.content), {}).toString("utf8")
+            writeFileSync(`${siteDir}/${page.name}`, minified)
         }
-        console.log(page)
+        console.log(view)
     } catch (e) {
         fatalError(e)
     }

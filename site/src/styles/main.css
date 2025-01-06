@@ -86,22 +86,8 @@ a:focus {
 
 /* Style the scrollbar if supported */
 @supports (scrollbar-color: auto) {
-    html,
     body {
-        scrollbar-color: var(--secondary-color) var(--background-color);
-    }
-}
-@supports selector(::-webkit-scrollbar) {
-    /* Track */
-    ::-webkit-scrollbar,
-    ::-webkit-scrollbar-track {
-        background: var(--background-color);
-    }
-
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        background: var(--secondary-color);
-        border-radius: var(--border-radius);
+        scrollbar-color: var(--secondary-color) #0000;
     }
 }
 
