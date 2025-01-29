@@ -1,12 +1,12 @@
 const handlebars = require('handlebars')
-const {minify} = require('@minify-html/node')
+const { minify } = require('@minify-html/node')
 const { readFileSync, writeFileSync, readdirSync } = require('node:fs')
 const { join } = require('node:path')
 const galleries = require('./galleries.js')
-const ourIPNS = "ipns://k51qzi5uqu5djge84e0oh3d7cy5l03130126g6kfxquex2wxrozshpdg8nd1sg"
-const wrappedLinkHelper = (text, url = "") => {
+const ourIPNS = 'ipns://k51qzi5uqu5djge84e0oh3d7cy5l03130126g6kfxquex2wxrozshpdg8nd1sg'
+const wrappedLinkHelper = (text, url = '') => {
     let target = ''
-    if (url !== ourIPNS && url.match(/^\w+?:\/\//ig)) {
+    if (url !== ourIPNS && url.match(/^\w+?:\/\//gi)) {
         target = 'target="_blank"' // open external links in a new tab
     }
 
@@ -14,7 +14,7 @@ const wrappedLinkHelper = (text, url = "") => {
 }
 const prefixedLinkHelper = (text, url) => {
     let target = ''
-    if (url !== ourIPNS && url.match(/^\w+?:\/\//ig)) {
+    if (url !== ourIPNS && url.match(/^\w+?:\/\//gi)) {
         target = 'target="_blank"' // open external links in a new tab
     }
     return `<a href="${url}" ${target}>[ ${text} ]</a>`
@@ -27,9 +27,7 @@ handlebars.registerHelper('populategallery', (gallery) => {
         const divID = img.url.split('.').reverse().slice(1).join('.')
         let source = `&#xe007;${img.credits || 'source unknown'}&#xe008;`
         if (img.sourceURL) {
-            if (img.sourceURL.startsWith('https')) {
-                source = wrappedLinkHelper(img.credits || 'source', img.sourceURL)
-            }
+            source = wrappedLinkHelper(img.credits || 'source', img.sourceURL)
         }
         galleryHTML +=
             `<div class="img-container" id="${divID}">` +
@@ -81,7 +79,7 @@ const DRY_RUN = process.env['DRY_RUN']
 
 const DEFAULT_CTX = {
     themecolor: '#262638',
-    author: '0xf0xx0'
+    author: '0xf0xx0',
 }
 const ctx = {
     index: {
@@ -135,7 +133,7 @@ function compileToHTML(page) {
         page: `${templateName}.html`,
         ...ctx[templateName],
     }
-    extra.stylesheets ? extra.stylesheets = extra.stylesheets.join('') : null
+    extra.stylesheets ? (extra.stylesheets = extra.stylesheets.join('')) : null
     let keywords = [
         '⎇',
         'ΘΔ',
@@ -171,7 +169,7 @@ for (const view of views.filter((v) => v.endsWith('.handlebars'))) {
     const page = compileToHTML(view)
     try {
         if (!DRY_RUN) {
-            const minified = minify(Buffer.from(page.content), {}).toString("utf8")
+            const minified = minify(Buffer.from(page.content), {}).toString('utf8')
             writeFileSync(`${siteDir}/${page.name}`, minified)
         }
         console.log(view)

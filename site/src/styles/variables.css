@@ -1,18 +1,18 @@
 :root {
-    --background-color: #271424;
-    --text-color: #dbb28d;
-    --link-color: #7477a4;
-    --secondary-color: #ac7d69;
-    --tertiary-color: #afbbd9;
-    --gray: #8f8299;
+    --background-color: #0b0e0d;
+    --text-color: #ACB7B4;
+    --link-color: #96887A;
+    --secondary-color: #63726e;
+    --tertiary-color: #857e6a;
+    --gray: #556364;
 
     --transition-normal: 333ms;
     --transition-quick: 200ms;
     --gap: 0.3rem;
-    --border-radius: 4px;
+    --border-radius: 0.2rem;
     --dim: 63%;
 
-    --gapped-border: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='4' ry='4' stroke='%23AC7D69FF' stroke-width='3' stroke-dasharray='12%2c66%2c6' stroke-dashoffset='0' stroke-linecap='butt'/%3e%3c/svg%3e");
+    --gapped-border: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='4' ry='4' stroke='%2363726eFF' stroke-width='3' stroke-dasharray='12%2c66%2c6' stroke-dashoffset='0' stroke-linecap='butt'/%3e%3c/svg%3e");
 }
 
 @keyframes cursor-blink {

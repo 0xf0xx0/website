@@ -143,7 +143,7 @@ a {
     line-height: 0.9rem;
     max-width: 30%;
     text-align: end;
-    color: var(--secondary-color);
+    color: var(--gray);
 }
 #header hr {
     border: 3px solid;
