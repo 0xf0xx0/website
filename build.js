@@ -83,7 +83,7 @@ const DEFAULT_CTX = {
 }
 const ctx = {
     index: {
-        tabtitle: '⎇From one realm to another.',
+        tabtitle: '⎇From one realm to another',
         desc: 'doin stuff on the internet',
         stylesheets: ['<link rel="stylesheet" type="text/css" href="src/styles/webrings.css" />'],
     },
@@ -167,9 +167,9 @@ for (const view of views.filter((v) => v.endsWith('.handlebars'))) {
         continue
     }
     const page = compileToHTML(view)
+    const minified = minify(Buffer.from(page.content), {}).toString('utf8')
     try {
         if (!DRY_RUN) {
-            const minified = minify(Buffer.from(page.content), {}).toString('utf8')
             writeFileSync(`${siteDir}/${page.name}`, minified)
         }
         console.log(view)

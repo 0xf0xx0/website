@@ -18,6 +18,10 @@ body {
     background-repeat: repeat;
     background-attachment: fixed;
 }
+::selection {
+    color: var(--text-color);
+    background: #3d3630;
+}
 
 body {
     display: flex;
