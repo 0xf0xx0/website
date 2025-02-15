@@ -177,8 +177,6 @@ a {
     border-radius: var(--border-radius);
     background-image: var(--gapped-border);
     overflow-y: scroll;
-    /* animated ver */
-    /* background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3cstyle type='text/css'%3e rect %7b stroke-dashoffset: 0; animation: dash 3s linear infinite;%7d %40keyframes dash %7b to %7b stroke-dashoffset: 168;%7d %7d %3c/style%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%23AC7D69FF' stroke-width='3' stroke-dasharray='12,66,6' stroke-dashoffset='0' stroke-linecap='butt' /%3e%3c/svg%3e"); */
 }
 #pane > div {
     display: inherit;
@@ -218,7 +216,6 @@ a {
 /* menu icon */
 .menu-link:hover::before,
 .menu-link:focus::before {
-    /* content: '\e005\00a0'; */
     color: var(--tertiary-color);
     margin-left: -1rem;
 }
@@ -296,27 +293,11 @@ footer > .section:last-child::after {
         max-width: unset;
         overflow: auto;
     }
-    /*#dropdown input:checked+label {
-        pointer-events: none;
-    }
-    #dropdown:focus-within input:checked+label {
-        pointer-events: all;
-    }
-    #dropdown label[for="dropdownlow"] {
-        display: block !important;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        cursor: pointer;
-        transition: all var(--transition-quick);
-    }*/
 
-    #dropdown-container/*:focus-within*/ input:checked + label + #menu {
+    #dropdown-container input:checked + label + #menu {
         display: flex !important;
     }
-    #dropdown-container/*:focus-within*/ input:checked + label::before {
+    #dropdown-container input:checked + label::before {
         content: '›'; /* placeholder */
         padding-inline-end: 0.2rem;
     }
