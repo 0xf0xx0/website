@@ -3,11 +3,7 @@
     shoot me a email if you make tweaks, i want ideas :3
 **/
 
-function cgol(field = null, dims, wrap = false) {
-    if (!field) {
-        throw 'no field'
-    }
-
+function cgol(field = null, dims) {
     const fieldWidth = field.length
     const fieldHeight = field[0].length
 
@@ -16,54 +12,34 @@ function cgol(field = null, dims, wrap = false) {
         for (let ii = 0; ii < fieldWidth; ii++) {
             /// cell check!
             let liveNeighbors = 0
-            /// furst, check neighbors
-            if (wrap) {
-                /// top and bottom
-                liveNeighbors += field[ii]?.[i - 1] === undefined ? field[ii][fieldHeight - 1] : field[ii][i - 1]
-                liveNeighbors += field[ii]?.[i + 1] === undefined ? field[ii][0] : field[ii][i + 1]
-                /// left and right
-                liveNeighbors += field[ii - 1]?.[i] === undefined ? field[fieldWidth - 1][i] : field[ii - 1][i]
-                liveNeighbors += field[ii + 1]?.[i] === undefined ? field[0][i] : field[ii + 1][i]
-                /// and now diagonals
-                let negIdx = ii - 1
-                if (negIdx === -1) {
-                    negIdx = fieldWidth - 1
-                }
-                let posIdx = ii + 1
-                if (posIdx === fieldWidth) {
-                    posIdx = 0
-                }
-                liveNeighbors +=
-                    field[negIdx]?.[i - 1] === undefined ? field[negIdx][fieldHeight - 1] : field[negIdx][i - 1]
-                liveNeighbors += field[negIdx]?.[i + 1] === undefined ? field[negIdx][0] : field[negIdx][i + 1]
-                liveNeighbors +=
-                    field[posIdx]?.[i - 1] === undefined ? field[posIdx][fieldHeight - 1] : field[posIdx][i - 1]
-                liveNeighbors += field[posIdx]?.[i + 1] === undefined ? field[posIdx][0] : field[posIdx][i + 1]
-            } else {
-                /// top and bottom
-                liveNeighbors += field[ii]?.[i - 1] === undefined ? 0 : field[ii][i - 1]
-                liveNeighbors += field[ii]?.[i + 1] === undefined ? 0 : field[ii][i + 1]
-                /// left and right
-                liveNeighbors += field[ii - 1]?.[i] === undefined ? 0 : field[ii - 1][i]
-                liveNeighbors += field[ii + 1]?.[i] === undefined ? 0 : field[ii + 1][i]
-                /// and now diagonals
-                liveNeighbors += field[ii - 1]?.[i - 1] === undefined ? 0 : field[ii - 1][i - 1]
-                liveNeighbors += field[ii - 1]?.[i + 1] === undefined ? 0 : field[ii - 1][i + 1]
-                liveNeighbors += field[ii + 1]?.[i - 1] === undefined ? 0 : field[ii + 1][i - 1]
-                liveNeighbors += field[ii + 1]?.[i + 1] === undefined ? 0 : field[ii + 1][i + 1]
+            /// furst, check neighbors w/ wraparound
+            /// top and bottom
+            liveNeighbors += field[ii]?.[i - 1] === undefined ? field[ii][fieldHeight - 1] : field[ii][i - 1]
+            liveNeighbors += field[ii]?.[i + 1] === undefined ? field[ii][0] : field[ii][i + 1]
+            /// left and right
+            liveNeighbors += field[ii - 1]?.[i] === undefined ? field[fieldWidth - 1][i] : field[ii - 1][i]
+            liveNeighbors += field[ii + 1]?.[i] === undefined ? field[0][i] : field[ii + 1][i]
+            /// and now diagonals
+            let posIdx = (ii + 1) % fieldWidth
+            let negIdx = ii - 1
+            if (negIdx === -1) {
+                negIdx = fieldWidth - 1
             }
+            liveNeighbors +=
+                field[negIdx]?.[i - 1] === undefined ? field[negIdx][fieldHeight - 1] : field[negIdx][i - 1]
+            liveNeighbors += field[negIdx]?.[i + 1] === undefined ? field[negIdx][0] : field[negIdx][i + 1]
+            liveNeighbors +=
+                field[posIdx]?.[i - 1] === undefined ? field[posIdx][fieldHeight - 1] : field[posIdx][i - 1]
+            liveNeighbors += field[posIdx]?.[i + 1] === undefined ? field[posIdx][0] : field[posIdx][i + 1]
 
             /// guess i'll Optional<die>
             const isAlive = !!field[ii][i]
             if (isAlive) {
-                if (liveNeighbors < 2) {
-                    newField[ii][i] = 0
-                }
                 /// "Any live cell with two or three live neighbours lives on to the next generation."
-                else if (liveNeighbors > 3) {
-                    newField[ii][i] = 0
-                } else {
+                if (liveNeighbors <= 3 && liveNeighbors >= 2) {
                     newField[ii][i] = field[ii][i]
+                } else {
+                    newField[ii][i] = 0
                 }
             } else {
                 /// we ded bish
@@ -74,20 +50,20 @@ function cgol(field = null, dims, wrap = false) {
             }
         }
     }
-
     return newField
 }
 function drawField(field, ctx) {
     const fieldWidth = field.length
     const fieldHeight = field[0].length
 
-    ctx.fillStyle = 'black'
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--background-color')
+    const fillColor = getComputedStyle(document.documentElement).getPropertyValue('--text-color')
     ctx.fillRect(0, 0, dims * pixelSize, dims * pixelSize)
     for (let i = 0; i < fieldHeight; i++) {
         for (let ii = 0; ii < fieldWidth; ii++) {
             const isAlive = !!field[ii][i]
             if (isAlive) {
-                ctx.fillStyle = 'white'
+                ctx.fillStyle = fillColor
             } else {
                 ctx.fillStyle = 'black'
             }
@@ -127,14 +103,13 @@ async function seedField(seed, field) {
 
     /// expand
     /// this very quickly breaks the BigInt limit at scale,
-    ///  good thing this is only for a favicon
+    /// good thing this is only for a favicon
     while (seed.length <= Math.ceil(cellCount / 4)) {
         //console.log(seed.length, seed)
         seed += await digestMessage(seed)
     }
 
     /// turn into binary string
-    //console.log(seed.length, cellCount)
     seed = bigintToBin(BigInt('0x' + seed))
     if (seed.length > cellCount) {
         /// grab the last bytes
@@ -144,8 +119,7 @@ async function seedField(seed, field) {
     for (let i = 0; i < fieldHeight; i++) {
         for (let ii = 0; ii < fieldWidth; ii++) {
             let idx = i * fieldWidth + ii
-            let bit = seed[idx]
-            field[ii][i] = parseInt(bit)
+            field[ii][i] = parseInt(seed[idx])
         }
     }
     return field
@@ -204,7 +178,7 @@ seedField(seedstring, generateEmptyField(dims)).then((field) => {
 
             const inter = setInterval(() => {
                 let oldstate = state
-                state = cgol(state, dims, dims, true)
+                state = cgol(state, dims)
                 /// keep going until we stabilize
                 drawField(state, ctx)
                 updateFavicon(canvas.toDataURL())

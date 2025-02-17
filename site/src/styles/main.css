@@ -187,13 +187,13 @@ a {
     margin: 0.1rem;
 }
 #pane .hov[onclick] {
-    color: var(--tertiary-color);
+    color: var(--primary-color);
 }
 #pane .hov > span:nth-child(even) {
     color: var(--text-color);
 }
 #pane .hov > span:nth-child(odd) {
-    color: var(--tertiary-color);
+    color: var(--primary-color);
 }
 /* remove list styling */
 #menu {
@@ -216,7 +216,6 @@ a {
 /* menu icon */
 .menu-link:hover::before,
 .menu-link:focus::before {
-    color: var(--tertiary-color);
     margin-left: -1rem;
 }
 
@@ -246,14 +245,12 @@ a {
     color: var(--text-color);
 }
 #pawprint span:nth-child(odd) {
-    color: var(--tertiary-color);
+    color: var(--primary-color);
 }
 
-footer > .section::after {
+footer > .section:not(:last-child)::after {
     content: '\e000\00a0';
-}
-footer > .section:last-child::after {
-    content: unset;
+    color: var(--secondary-color);
 }
 
 @media screen and (max-width: 50rem), (pointer: coarse) {
