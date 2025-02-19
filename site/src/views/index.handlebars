@@ -15,7 +15,7 @@
                 <li class='menu-link hov' tabindex='0' page='bio'>bio{{{cursorblink}}}</li>
                 <li class='menu-link hov' tabindex='0' page='contact'>contact{{{cursorblink}}}</li>
                 <li class='menu-link hov' tabindex='0' page='otherpages'>pages{{{cursorblink}}}</li>
-                <li class='menu-link hov' tabindex='0' page='links'>links{{{cursorblink}}}</li>
+                <li class='menu-link hov' tabindex='0' page='mystuff'>my stuff{{{cursorblink}}}</li>
             </menu>
         </div>
     </div>
@@ -45,20 +45,22 @@
             and others of my species</span>
             <span><strong>do I know you?</strong> you think you do</span>
             <strong>pawprint:</strong>
-            <b id='pawprint' class='hov copyable' onclick='copy(this, {trimNewlines: true})' title='Click to copy!'>
+            <span id='pawprint' class='hov copyable' onclick='copy(this, {trimNewlines: true})' title='Click to copy!'>
                 {{{pawprint}}}
-            </b>
+            </span>
         </div>
 
         <div class='hidden' id='bio'>
-            <p>fox lover, bitcoin enjoyer, and a p2p enthusiast</p>
+            <p>fox lover, linux poweruser, bitcoin enjoyer, and a p2p enthusiast</p>
             <p>sometimes i make cool things, like
                 {{{hyperlink 'cli-pride-flags' 'https://github.com/0xf0xx0/cli-pride-flags'}}} and
-                {{{hyperlink 'pixelsort-go' 'https://github.com/0xf0xx0/pixelsort-go'}}}
+                {{{hyperlink 'pixelsort-go' 'https://github.com/0xf0xx0/pixelsort-go'}}},
+                or my pixelsorts, or music
             </p>
+            <p>everything i make is cc-by-nc-sa (art)/(a)gpl-v3 (code), unless otherwise licensed</p>
         </div>
 
-        <div class='hidden' id='links'>
+        <div class='hidden' id='mystuff'>
             {{{hyperlink 'speedruns' 'https://speedrun.com/user/0xf0xx0'}}}
             {{{hyperlink
                 'youtube'
@@ -66,7 +68,7 @@
             }}}
             {{{hyperlink 'code' 'https://github.com/0xf0xx0'}}}
             {{{hyperlink 'dots' 'https://github.com/0xf0xx0/dotfiles'}}}
-            <h3>Tools/Utils{{{cursorblink}}}</h3>
+            <h3>tools/ultils{{{cursorblink}}}</h3>
             {{{hyperlink 'pride flags in your term' 'https://github.com/0xf0xx0/cli-pride-flags'}}}
             {{{hyperlink
                 'list for pride flag colors and weights'
@@ -111,12 +113,12 @@
     </div>
     <div id='linuxring' class='webring'>
         <script
-            async
+            defer
             type='text/javascript'
             src='https://teethinvitro.neocities.org/webring/linuxring/script/onionring-variables.js'
         ></script>
         <script
-            async
+            defer
             type='text/javascript'
             src='https://teethinvitro.neocities.org/webring/linuxring/script/onionring-widget.js'
         ></script>
@@ -132,11 +134,11 @@
         <link rel='stylesheet' href='https://furryring.neocities.org/onionring.css' />
     </div>
     <div id='freespeechwebring' class='webring'>
-        <script type="text/javascript" src="https://town.thecozy.cat/wp-content/onionring/onionring-variables.js?v=1.0"></script>
-        <script type="text/javascript" src="https://town.thecozy.cat/wp-content/onionring/onionring-widget.js"></script>
+        <script defer type="text/javascript" src="https://town.thecozy.cat/wp-content/onionring/onionring-variables.js?v=1.0"></script>
+        <script defer type="text/javascript" src="https://town.thecozy.cat/wp-content/onionring/onionring-widget.js"></script>
     </div>
     <div id='safontring' class='webring'>
-        <script src='https://xandra.cc/safonts/webring.js'></script>
+        <script defer src='https://xandra.cc/safonts/webring.js'></script>
         <ring-900 site='https://0xf0xx0.eth.limo/'></ring-900>
     </div>
     <div id='xenicRing' class='webring'>
@@ -145,24 +147,24 @@
         <script defer type='text/javascript' src='https://xenics.neocities.org/onionring-widget.js'></script>
     </div>
     <div id='queerreligious'>
-        <script type='text/javascript' src='https://symphony.surgery/queereligious/onionring-variables.js'></script>
-        <script type='text/javascript' src='https://symphony.surgery/queereligious/onionring-widget.js'></script>
+        <script defer type='text/javascript' src='https://symphony.surgery/queereligious/onionring-variables.js'></script>
+        <script defer type='text/javascript' src='https://symphony.surgery/queereligious/onionring-widget.js'></script>
     </div>
 </div>
 <footer>
     <hr />
     <span class='section'>self-hosted</span>
     <span class='section'>bridged
-        {{{hyperlink 'from IPFS' 'ipns://k51qzi5uqu5djge84e0oh3d7cy5l03130126g6kfxquex2wxrozshpdg8nd1sg'}}}
+        {{{hyperlink 'from ipfs' 'ipns://k51qzi5uqu5djge84e0oh3d7cy5l03130126g6kfxquex2wxrozshpdg8nd1sg'}}}
         by
         {{{hyperlink 'eth.limo' 'https://eth.limo'}}}
     </span>
-    <span class='section'>Fonts:
-        {{{hyperlink 'Unitblock' 'https://ggbot.itch.io/unitblock-font'}}}
-        {{{hyperlink 'Alterbeing' 'src/fonts/alterbeing.woff2'}}}
+    <span class='section'>fonts:
+        {{{hyperlink 'unitblock' 'https://ggbot.itch.io/unitblock-font'}}}
+        {{{hyperlink 'alterbeing' 'src/fonts/alterbeing.woff2'}}}
     </span>
     <span class='section'>licensed
-        under {{{hyperlink 'AGPL-v3.0' 'LICENSE.txt'}}}
+        under {{{hyperlink 'agpl-v3.0' 'LICENSE.txt'}}}
     </span>
     <span class='section'>build
         the world you wish to live in

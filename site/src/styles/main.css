@@ -19,7 +19,6 @@ body {
     background-attachment: fixed;
 }
 ::selection {
-    color: var(--text-color);
     background: #3d3630;
 }
 
