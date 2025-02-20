@@ -50,12 +50,7 @@ function cgol(field = null, dims) {
 function drawField(field, ctx) {
     for (let i = 0; i < dims; i++) {
         for (let ii = 0; ii < dims; ii++) {
-            const isAlive = !!field[ii][i]
-            if (isAlive) {
-                ctx.fillStyle = fgColor
-            } else {
-                ctx.fillStyle = bgColor
-            }
+            ctx.fillStyle = !!field[ii][i] ? fgColor : bgColor
             ctx.fillRect(ii * pixelSize, i * pixelSize, pixelSize, pixelSize)
         }
     }
@@ -68,7 +63,7 @@ function generateEmptyField(dims) {
     }
     return field
 }
-async function digestMessage(message) {
+async function digestSeedString(message) {
     if (!window.crypto) {
         /// bruh, are you a dinosaur?
         console.error("window.crypto doesn't exist, use a modern browser ya dingus!")
@@ -76,33 +71,29 @@ async function digestMessage(message) {
     }
     const encoder = new TextEncoder()
     const data = encoder.encode(message)
-    const hashBuffer = await window.crypto.subtle.digest('SHA-256', data)
+    const hashBuffer = await window.crypto.subtle.digest('SHA-1', data)
     const hashArray = Array.from(new Uint8Array(hashBuffer)) // convert buffer to byte array
-    return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('') // convert bytes to hex string
+    return parseInt('0x'+hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')) // convert bytes to hex string
+}
+/// https://stackoverflow.com/a/47593316
+/// math! i dont understand it
+function splitmix32(a) {
+    return function () {
+        a |= 0
+        a = (a + 0x9e3779b9) | 0
+        let t = a ^ (a >>> 16)
+        t = Math.imul(t, 0x21f0aaad)
+        t = t ^ (t >>> 15)
+        t = Math.imul(t, 0x735a2d97)
+        return ((t = t ^ (t >>> 15)) >>> 0) / 4294967296
+    }
 }
 async function seedField(seed, field) {
-    const cellCount = dims * dims
-
-    seed = await digestMessage(seed)
-
-    /// expand
-    /// this very quickly breaks the BigInt limit at scale,
-    /// good thing this is only for a favicon
-    while (seed.length <= Math.ceil(cellCount / 4)) {
-        seed += await digestMessage(seed)
-    }
-
-    /// turn into binary string
-    seed = (BigInt('0x' + seed) >> 0n).toString(2)
-    if (seed.length > cellCount) {
-        /// grab the last bytes
-        seed = seed.slice(-cellCount)
-    }
-
+    seed = await digestSeedString(seed)
+    const rng = splitmix32(seed)
     for (let i = 0; i < dims; i++) {
         for (let ii = 0; ii < dims; ii++) {
-            let idx = i * dims + ii
-            field[ii][i] = parseInt(seed[idx])
+            field[ii][i] = rng() > 0.6
         }
     }
     return field
@@ -127,7 +118,7 @@ const tickMS = parseInt(params.get('cgoltickms')) || 300
 const icon = document.querySelector('link[rel="icon"]')
 const canvas = document.createElement('canvas')
 const ctx = canvas.getContext('2d')
-let bgColor, fgColor;
+let bgColor, fgColor
 canvas.width = dims * pixelSize
 canvas.height = dims * pixelSize
 
