@@ -130,6 +130,7 @@ seedstring += navigator.maxTouchPoints
 seedstring += window.devicePixelRatio
 seedstring += navigator.language
 seedstring += navigator.buildID
+seedstring += location.hostname
 seedstring += navigator.oscpu
 
 seedstring = seedstring.replace(/\s/g, '')
