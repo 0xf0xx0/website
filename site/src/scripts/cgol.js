@@ -3,7 +3,7 @@
     shoot me a email if you make tweaks, i want ideas :3
 **/
 
-function cgol(field = null, dims) {
+function cgol(field) {
     let newField = generateEmptyField(dims)
     for (let i = 0; i < dims; i++) {
         for (let ii = 0; ii < dims; ii++) {
@@ -28,8 +28,7 @@ function cgol(field = null, dims) {
             liveNeighbors += field[posIdx]?.[i + 1] === undefined ? field[posIdx][0] : field[posIdx][i + 1]
 
             /// guess i'll Optional<die>
-            const isAlive = !!field[ii][i]
-            if (isAlive) {
+            if (!!field[ii][i]) {
                 /// "Any live cell with two or three live neighbours lives on to the next generation."
                 if (liveNeighbors === 2 || liveNeighbors === 3) {
                     newField[ii][i] = field[ii][i]
@@ -56,7 +55,7 @@ function drawField(field, ctx) {
     }
     return ctx
 }
-function generateEmptyField(dims) {
+function generateEmptyField() {
     let field = Array(dims)
     for (let i = 0; i < dims; i++) {
         field[i] = Array(dims).fill(0)
@@ -111,8 +110,8 @@ function compareStates(A, B) {
 }
 
 const params = new URLSearchParams(window.location.search)
-const dims = 64
-const pixelSize = 2
+const dims = 32
+const pixelSize = 4
 const tickMS = parseInt(params.get('cgoltickms')) || 300
 
 const icon = document.querySelector('link[rel="icon"]')
@@ -150,7 +149,7 @@ seedField(seedstring, generateEmptyField(dims)).then((field) => {
 
             const inter = setInterval(() => {
                 let oldstate = state
-                state = cgol(state, dims)
+                state = cgol(state)
                 /// keep going until we stabilize
                 drawField(state, ctx)
                 updateFavicon(canvas.toDataURL())
