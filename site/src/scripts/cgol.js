@@ -46,14 +46,19 @@ function cgol(field) {
     }
     return newField
 }
-function drawField(field, ctx) {
+function drawField(oldfield, field) {
+    let diff = 0
     for (let i = 0; i < dims; i++) {
         for (let ii = 0; ii < dims; ii++) {
+            if (oldfield[ii][i] !== field[ii][i]) {
+                diff++
+            }
             ctx.fillStyle = !!field[ii][i] ? fgColor : bgColor
             ctx.fillRect(ii * pixelSize, i * pixelSize, pixelSize, pixelSize)
         }
     }
-    return ctx
+    icon.href = canvas.toDataURL()
+    return diff
 }
 function generateEmptyField() {
     let field = Array(dims)
@@ -88,8 +93,7 @@ function splitmix32(a) {
     }
 }
 async function seedField(seed, field) {
-    seed = await digestSeedString(seed)
-    const rng = splitmix32(seed)
+    const rng = splitmix32(await digestSeedString(seed))
     for (let i = 0; i < dims; i++) {
         for (let ii = 0; ii < dims; ii++) {
             field[ii][i] = rng() > 0.6
@@ -97,20 +101,10 @@ async function seedField(seed, field) {
     }
     return field
 }
-function compareStates(A, B) {
-    let diff = 0
-    for (let i = 0; i < dims; i++) {
-        for (let ii = 0; ii < dims; ii++) {
-            if (A[ii][i] !== B[ii][i]) {
-                diff++
-            }
-        }
-    }
-    return diff
-}
 
 const params = new URLSearchParams(window.location.search)
 const dims = 32
+const stopThresh = 0.12
 const pixelSize = 4
 const tickMS = parseInt(params.get('cgoltickms')) || 300
 
@@ -124,37 +118,27 @@ canvas.height = dims * pixelSize
 /// not tracking you i swear, this is for seeding the game
 /// if you havent seen already, look in the favicon
 /// most visitors get a unique favicon :3
-let seedstring = navigator.userAgent
-seedstring += navigator.hardwareConcurrency
-seedstring += navigator.maxTouchPoints
-seedstring += window.devicePixelRatio
-seedstring += navigator.language
-seedstring += navigator.buildID
-seedstring += location.hostname
-seedstring += navigator.oscpu
+const seedstring = `${navigator.userAgent}${navigator.hardwareConcurrency}${navigator.maxTouchPoints}`
+    + `${window.devicePixelRatio}${navigator.language}${navigator.buildID}${location.hostname}`
+    + `${navigator.oscpu}`
 
-seedstring = seedstring.replace(/\s/g, '')
-seedField(seedstring, generateEmptyField(dims)).then((field) => {
-    let state = field
+seedField(seedstring, generateEmptyField(dims)).then((state) => {
     /// lower thresh = less alive at the end
-    const stopThreshold = Math.ceil(dims * dims * 0.06)
+    const minUpdates = Math.ceil(dims * dims * stopThresh)
 
     window.addEventListener(
         'load',
         () => {
-            bgColor = getComputedStyle(document.documentElement).getPropertyValue('--background-color')
-            fgColor = getComputedStyle(document.documentElement).getPropertyValue('--text-color')
+            const computedStyle = getComputedStyle(document.documentElement)
+            bgColor = computedStyle.getPropertyValue('--background-color')
+            fgColor = computedStyle.getPropertyValue('--text-color')
             /// draw
-            drawField(state, ctx)
-            updateFavicon(canvas.toDataURL())
+            drawField(state, state)
 
+            /// keep going until we stabilize
             const inter = setInterval(() => {
-                let oldstate = state
-                state = cgol(state)
-                /// keep going until we stabilize
-                drawField(state, ctx)
-                updateFavicon(canvas.toDataURL())
-                if (compareStates(oldstate, state) < stopThreshold) {
+                [oldstate, state] = [state, cgol(state)]
+                if (drawField(oldstate, state) <= minUpdates) {
                     clearInterval(inter)
                 }
             }, tickMS)
@@ -162,7 +146,3 @@ seedField(seedstring, generateEmptyField(dims)).then((field) => {
         false
     )
 })
-
-function updateFavicon(newImg) {
-    icon.href = newImg
-}
