@@ -61,14 +61,6 @@ h3 {
 p {
     word-wrap: break-word;
 }
-/*
-    Used for lists
-*/
-pre {
-    white-space: pre-line;
-    font: inherit;
-    margin: var(--gap) 0px;
-}
 
 a {
     text-decoration: unset;

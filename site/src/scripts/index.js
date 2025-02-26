@@ -52,17 +52,12 @@ const menuAction = (ev) => {
         return
     }
     if (activePane) {
-        /// TODO: store elements?
         document.getElementById(activePane).className = 'hidden'
     }
     document.getElementById(section).className = ''
     activePane = section
     panecmd.innerText = section
-    //pane.innerHTML = sections[section]
     box.checked ? (box.checked = false) : null
-
-    // re-exec on change
-    //italiciseText()
 }
 const paneAction = (ev) => {
     if (ev?.key) {

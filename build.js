@@ -3,6 +3,7 @@ const { minify } = require('@minify-html/node')
 const { readFileSync, writeFileSync, readdirSync } = require('node:fs')
 const { join } = require('node:path')
 const galleries = require('./galleries.js')
+const yaml = require('yaml')
 const ourIPNS = 'ipns://k51qzi5uqu5djge84e0oh3d7cy5l03130126g6kfxquex2wxrozshpdg8nd1sg'
 const wrappedLinkHelper = (text, url = '') => {
     let target = ''
@@ -19,8 +20,9 @@ const prefixedLinkHelper = (text, url) => {
     }
     return `<a href="${url}" ${target}>[ ${text} ]</a>`
 }
-handlebars.registerHelper('populategallery', (gallery) => {
+handlebars.registerHelper('populategallery', ({data}) => {
     let galleryHTML = ''
+    const gallery = galleries[data.root.page]
     for (const img of gallery.images) {
         const src = `${gallery.tld}${img.url}`
         /// usse the image path without the file ext as the id
@@ -56,6 +58,9 @@ handlebars.registerHelper('header', (maintext, subtext) => {
     </div>
     `.trim()
 })
+handlebars.registerHelper('svg', (path) => {
+    return `<div class="svgcont">${readFileSync(join(__dirname, '/site/', path))}</div>`
+})
 handlebars.registerHelper('pawprint', () => {
     return pawprint
         .split(' ')
@@ -81,59 +86,24 @@ const DEFAULT_CTX = {
     themecolor: '#262638',
     author: '0xf0xx0',
 }
-const ctx = {
-    index: {
-        tabtitle: '⎇From one realm to another',
-        desc: 'doin stuff on the internet',
-        stylesheets: ['<link rel="stylesheet" type="text/css" href="src/styles/webrings.css" />'],
-    },
-    'cyberspace-independence': {
-        tabtitle: 'A Declaration of the Independence of Cyberspace',
-        desc:
-            '"A Declaration of the Independence of Cyberspace" is a widely distributed early paper ' +
-            'on the applicability (or lack thereof) of government to the rapidly growing Internet. ' +
-            'Commissioned for the pioneering Internet project 24 Hours in Cyberspace, ' +
-            'it was written by John Perry Barlow, a founder of the Electronic Frontier Foundation, ' +
-            'and published online on February 8, 1996, from Davos, Switzerland.',
-        author: 'John Perry Barlow',
-        keywords: ['cyberspace', 'independence'],
-    },
-    pixelsorts: {
-        tabtitle: 'Pixels Placed in (Dis)Order',
-        desc: 'organic Home-grown free-range pixelsorts',
-        stylesheets: ['<link rel="stylesheet" type="text/css" href="src/styles/gallery.css" />'],
-        galleryImages: galleries.pixelsorts,
-        keywords: ['pixelsorting', 'pixelsort', 'glitch art'],
-        image: 'https://0xf0xuments.0xf0xx0.eth.limo/pixelsort-gens/boat-on-lake/final.jpg',
-        imageDims: { width: 1000, height: 1500 },
-    },
-    eve: {
-        tabtitle: 'Screenshots in Space',
-        desc: "When i'm not dyin, i'm killin and then dyin",
-        stylesheets: ['<link rel="stylesheet" type="text/css" href="src/styles/gallery.css" />'],
-        galleryImages: galleries.eve,
-        keywords: ['eve online', 'screenshots'],
-        image: 'https://0xf0xuments.0xf0xx0.eth.limo/eve-screenshots/CataclysmicVariable.png',
-        imageDims: { width: 1280, height: 800 },
-    },
-    flags: {
-        tabtitle: 'Unified-pride-flags Flag Previews',
-        desc: 'Previews of the flags included in unified-pride-flags.',
-        author: '@KonkenBonken, @0xf0xx0 (GitHub)',
-        stylesheets: ['<link rel="stylesheet" type="text/css" href="src/styles/flags.css" />'],
-        keywords: ['unified pride flags', 'cli pride flags', 'lgbtqia'],
-    },
-    404: { tabtitle: 'Are You Lost? (404)', desc: 'Were you ever Found?' },
-}
 function compileToHTML(page) {
-    const template = readFileSync(`${viewsDir}/${page}`, 'utf-8')
-    const templateName = page.split('.')[0]
+    const file = readFileSync(`${viewsDir}/${page}`, 'utf-8')
+    const fileName = page.split('.')[0]
+
+    const [_, frontmatter, template] = file.match(/^---\n([\s\S]+)---([\s\S]+)$/)
+    const metadata = yaml.parse(frontmatter)
+    const body = handlebars.compile(template)
+
     const extra = {
         ...DEFAULT_CTX,
-        page: `${templateName}.html`,
-        ...ctx[templateName],
+        ...metadata,
+        page: fileName
     }
-    extra.stylesheets ? (extra.stylesheets = extra.stylesheets.join('')) : null
+    extra.stylesheets
+        ? (extra.stylesheets = extra.stylesheets
+              .map((v) => `<link rel="stylesheet" type="text/css" href="src/styles/${v}.css"/>`)
+              .join(''))
+        : null
     let keywords = [
         '⎇',
         'ΘΔ',
@@ -152,11 +122,10 @@ function compileToHTML(page) {
     }
     extra.keywords = keywords
 
-    const body = handlebars.compile(template)
-
     return {
         name: extra.page,
         content: LAYOUT({ body: body(extra), ...extra }),
+        frontmatter
     }
 }
 
@@ -170,7 +139,7 @@ for (const view of views.filter((v) => v.endsWith('.handlebars'))) {
     const minified = minify(Buffer.from(page.content), {}).toString('utf8')
     try {
         if (!DRY_RUN) {
-            writeFileSync(`${siteDir}/${page.name}`, minified)
+            writeFileSync(`${siteDir}/${page.name}.html`, minified)
         }
         console.log(view)
     } catch (e) {

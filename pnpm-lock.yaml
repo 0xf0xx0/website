@@ -17,6 +17,9 @@ importers:
       handlebars:
         specifier: ^4.7.8
         version: 4.7.8
+      yaml:
+        specifier: ^2.7.0
+        version: 2.7.0
 
 packages:
 
@@ -86,6 +89,11 @@ packages:
   wordwrap@1.0.0:
     resolution: {integrity: sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==}
 
+  yaml@2.7.0:
+    resolution: {integrity: sha512-+hSoy/QHluxmC9kCIJyL/uyFmLmc+e5CFR5Wa+bpIhIj85LVb9ZH2nVnqrHoSvKogwODv0ClqZkmiSSaIH5LTA==}
+    engines: {node: '>= 14'}
+    hasBin: true
+
 snapshots:
 
   '@minify-html/node-darwin-x64@0.15.0':
@@ -143,3 +151,5 @@ snapshots:
     optional: true
 
   wordwrap@1.0.0: {}
+
+  yaml@2.7.0: {}
