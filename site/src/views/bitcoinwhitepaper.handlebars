@@ -6,7 +6,7 @@ stylesheets: [papers]
 ---
 {{{header
     tabtitle
-    "{{{wrappedlink 'home' '/'}}}<br>acquired from my own node"
+    "{{{wrappedlink 'home' '/'}}}<br>Satoshi Nakamoto"
 }}}
 
 <p><b>Abstract.</b> A purely peer-to-peer version of electronic cash would allow online
@@ -52,6 +52,7 @@ next by digitally signing a hash of the previous transaction and the public key 
 and adding these to the end of the coin. A payee can verify the signatures to verify the chain of
 ownership.</p>
 {{{svg 'src/views/btcwpdiags/diag1.svg'}}}
+
 <p>The problem of course is the payee can't verify that one of the owners did not double-spend
 the coin. A common solution is to introduce a trusted central authority, or mint, that checks every
 transaction for double spending. After each transaction, the coin must be returned to the mint to
@@ -63,15 +64,17 @@ transactions. For our purposes, the earliest transaction is the one that counts,
 about later attempts to double-spend. The only way to confirm the absence of a transaction is to
 be aware of all transactions. In the mint based model, the mint was aware of all transactions and
 decided which arrived first. To accomplish this without a trusted party, transactions must be
-publicly announced <a href="#ref1">[1]</a>, and we need a system for participants to agree on a single history of the
-order in which they were received. The payee needs proof that at the time of each transaction, the
-majority of nodes agreed it was the first received.</p>
+publicly announced <a href="#ref1">[1]</a>, and we need a system for participants to agree on a single
+history of the order in which they were received. The payee needs proof that at the time of each
+transaction, the majority of nodes agreed it was the first received.</p>
 <h2>3. Timestamp Server</h2>
 <p>The solution we propose begins with a timestamp server. A timestamp server works by taking a
 hash of a block of items to be timestamped and widely publishing the hash, such as in a
-newspaper or Usenet post <a href="#ref2">[2]</a><a href="#ref3">[3]</a><a href="#ref4">[4]</a><a href="#ref5">[5]</a>. The timestamp proves that the data must have existed at the
-time, obviously, in order to get into the hash. Each timestamp includes the previous timestamp in
-its hash, forming a chain, with each additional timestamp reinforcing the ones before it.</p>
+newspaper or Usenet post
+<a href="#ref2">[2]</a><a href="#ref3">[3]</a><a href="#ref4">[4]</a><a href="#ref5">[5]</a>.
+The timestamp proves that the data must have existed at the time, obviously, in order to get into
+the hash. Each timestamp includes the previous timestamp in its hash, forming a chain, with each
+additional timestamp reinforcing the ones before it.</p>
 {{{svg 'src/views/btcwpdiags/diag2.svg'}}}
 
 <h2>4. Proof-of-Work</h2>
@@ -337,22 +340,44 @@ them. Any needed rules and incentives can be enforced with this consensus mechan
 
 <h2>References</h2>
 <ol>
-<li id="ref1">[1] W. Dai, "b-money," <a href="http://www.weidai.com/bmoney.txt">http://www.weidai.com/bmoney.txt</a>, 1998.</li>
-<li id="ref2">[2] H. Massias, X.S. Avila, and J.-J. Quisquater, "Design of a secure timestamping service with minimal
-trust requirements," In 20th Symposium on Information Theory in the Benelux, May 1999.</li>
-<li id="ref3">[3] S. Haber, W.S. Stornetta, "How to time-stamp a digital document," In Journal of Cryptology, vol 3, no
-2, pages 99-111, 1991.</li>
-<li id="ref4">[4] D. Bayer, S. Haber, W.S. Stornetta, "Improving the efficiency and reliability of digital time-stamping,"
-In Sequences II: Methods in Communication, Security and Computer Science, pages 329-334, 1993.</li>
-<li id="ref5">[5] S. Haber, W.S. Stornetta, "Secure names for bit-strings," In Proceedings of the 4th ACM Conference
-on Computer and Communications Security, pages 28-35, April 1997.</li>
-<li id="ref6">[6] A. Back, "Hashcash - a denial of service counter-measure,"
-<a href="http://www.hashcash.org/papers/hashcash.pdf">http://www.hashcash.org/papers/hashcash.pdf</a>, 2002.</li>
-<li id="ref7">[7] R.C. Merkle, "Protocols for public key cryptosystems," In Proc. 1980 Symposium on Security and
-Privacy, IEEE Computer Society, pages 122-133, April 1980.</li>
-<li id="ref8">[8] W. Feller, "An introduction to probability theory and its applications," 1957.</li>
+    <li id="ref1"><a href="#ref1">[1]</a>
+        W. Dai, "b-money," <a href="http://www.weidai.com/bmoney.txt">http://www.weidai.com/bmoney.txt</a>, 1998.
+    </li>
+    <li id="ref2"><a href="#ref2">[2]</a>
+        H. Massias, X.S. Avila, and J.-J. Quisquater, "Design of a secure timestamping service with minimal
+        trust requirements," In <a href="https://www.w-i-c.org/proceedings/proceedings_SITB1999.pdf"><i>20th Symposium on Information Theory in the Benelux</i></a>, May 1999.
+        </li>
+    <li id="ref3"><a href="#ref3">[3]</a>
+        S. Haber, W.S. Stornetta, "How to time-stamp a digital document," In <a href="https://link.springer.com/article/10.1007/BF00196791"><i>Journal of Cryptology</i>, vol 3, no
+        2, pages 99-111</a>, 1991.
+        </li>
+    <li id="ref4"><a href="#ref4">[4]</a>
+        D. Bayer, S. Haber, W.S. Stornetta, "Improving the efficiency and reliability of digital time-stamping,"
+        In <a href="https://link.springer.com/chapter/10.1007/978-1-4613-9323-8_24"><i>Sequences II: Methods in Communication, Security and Computer Science</i>, pages 329-334</a>, 1993.
+        </li>
+    <li id="ref5"><a href="#ref5">[5]</a>
+        S. Haber, W.S. Stornetta, "Secure names for bit-strings," In <a href="https://dl.acm.org/doi/10.1145/266420.266430"><i>Proceedings of the 4th ACM Conference
+        on Computer and Communications Security</i>, pages 28-35</a>, April 1997.
+        </li>
+    <li id="ref6"><a href="#ref6">[6]</a>
+        A. Back, "Hashcash - a denial of service counter-measure,"
+        <a href="http://www.hashcash.org/papers/hashcash.pdf">http://www.hashcash.org/papers/hashcash.pdf</a>, 2002.
+        </li>
+    <li id="ref7"><a href="#ref7">[7]</a>
+        R.C. Merkle, "Protocols for public key cryptosystems," In <a href="https://ieeexplore.ieee.org/document/6233691"><i>Proc. 1980 Symposium on Security and
+        Privacy</i>, IEEE Computer Society, pages 122-133</a>, April 1980.
+        </li>
+    <li id="ref8"><a href="#ref8">[8]</a>
+        W. Feller, <a href="https://archive.org/details/dli.ernet.5666">"An introduction to probability theory and its applications,"</a> 1957.
+    </li>
 </ol>
 <footer>
 <hr/>
-{{{wrappedlink 'www.bitcoin.org' 'www.bitcoin.org'}}}
+ <span class='section'>{{{wrappedlink 'bitcoin.org' 'https://bitcoin.org'}}}</span>
+ <span class='section'>acquired
+    from my own node
+ </span>
+ <span class='section'>tweaks
+    made: references link to source (some are paywalled)
+ </span>
 </footer>
