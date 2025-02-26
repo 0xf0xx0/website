@@ -1,17 +1,3 @@
-function getAllTextElms() {
-    // not really *all* text elms, but the ones used on this site lol
-    const textElems = [
-        ...document.getElementsByTagName('p'),
-        ...document.getElementsByTagName('span'),
-        ...document.getElementsByTagName('a'),
-        ...document.getElementsByTagName('h1'),
-        ...document.getElementsByTagName('h2'),
-        ...document.getElementsByTagName('h3'),
-        ...document.getElementsByTagName('pre'),
-    ]
-    return textElems
-}
-
 async function copy(elm, config) {
     if (!elm) {
         return alert("The element to copy doesn't exist.")
