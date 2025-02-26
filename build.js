@@ -20,7 +20,10 @@ const prefixedLinkHelper = (text, url) => {
     }
     return `<a href="${url}" ${target}>[ ${text} ]</a>`
 }
-handlebars.registerHelper('populategallery', ({data}) => {
+handlebars.registerHelper('concat', (...arguments) => {
+    return arguments.slice(0, -1).join('')
+})
+handlebars.registerHelper('populategallery', ({ data }) => {
     let galleryHTML = ''
     const gallery = galleries[data.root.page]
     for (const img of gallery.images) {
@@ -97,7 +100,7 @@ function compileToHTML(page) {
     const extra = {
         ...DEFAULT_CTX,
         ...metadata,
-        page: fileName
+        page: fileName,
     }
     extra.stylesheets
         ? (extra.stylesheets = extra.stylesheets
@@ -125,7 +128,7 @@ function compileToHTML(page) {
     return {
         name: extra.page,
         content: LAYOUT({ body: body(extra), ...extra }),
-        frontmatter
+        frontmatter,
     }
 }
 
