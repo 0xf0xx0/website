@@ -1,0 +1,12 @@
+svg {
+    width: 100%;
+}
+code {
+    white-space: pre;
+}
+pre {
+    margin: var(--gap) 0px;
+}
+ul, li {
+    list-style-type: none;
+}
