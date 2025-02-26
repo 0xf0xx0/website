@@ -4,32 +4,12 @@
 <svg
    height="70.5mm"
    viewBox="0 0 78.52 42.93"
-   version="1.1"
    id="diag4"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <defs
-     id="defs1">
-    <clipPath
-       id="clip-0">
-      <path
-         clip-rule="nonzero"
-         d="M 317,445.69922 H 454.69922 V 595 H 317 Z m 0,0"
-         id="path111" />
-    </clipPath>
-    <clipPath
-       id="clip-1">
-      <path
-         clip-rule="nonzero"
-         d="M 157.69922,445.69922 H 296 V 595 H 157.69922 Z m 0,0"
-         id="path112" />
-    </clipPath>
-  </defs>
+   xmlns="http://www.w3.org/2000/svg">
   <g
      id="layer1"
      transform="translate(-29.897917,-99.747911)">
     <g
-       clip-path="url(#clip-0)"
        id="g2568"
        transform="matrix(0.26458333,0,0,0.26458333,-11.826668,-18.176673)">
       <path
@@ -112,7 +92,6 @@
       </g>
     </g>
     <g
-       clip-path="url(#clip-1)"
        id="g2574"
        transform="matrix(0.26458333,0,0,0.26458333,-11.826668,-18.176673)">
       <path

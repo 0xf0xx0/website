@@ -4,20 +4,8 @@
 <svg
    height="70.5mm"
    viewBox="0 0 97.74 41.02"
-   version="1.1"
    id="diag5"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <defs
-     id="defs1">
-    <clipPath
-       id="clip-6">
-      <path
-         clip-rule="nonzero"
-         d="m 486,222 h 7.89844 v 5 H 486 Z m 0,0"
-         id="path115" />
-    </clipPath>
-  </defs>
+   xmlns="http://www.w3.org/2000/svg">
   <g
      id="layer1"
      transform="translate(-427.30208,285.17086)">
@@ -1930,7 +1918,6 @@
        d="m 457.35916,-275.73267 h 6.08542"
        id="path2327" />
     <g
-       clip-path="url(#clip-6)"
        id="g2328"
        transform="matrix(0.26458333,0,0,0.26458333,394.44104,-335.13163)">
       <path

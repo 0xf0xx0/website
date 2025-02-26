@@ -4,11 +4,8 @@
 <svg
    height="35.25mm"
    viewBox="0 0 138.62 30.51"
-   version="1.1"
-   id="svg2306"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
+   id="diag10"
+   xmlns="http://www.w3.org/2000/svg">
   <defs
      id="defs141">
     <g
@@ -848,20 +845,6 @@
            id="path138" />
       </g>
     </g>
-    <clipPath
-       id="clip-1">
-      <path
-         clip-rule="nonzero"
-         d="m 171,364.39844 h 4 v 31 h -4 z m 0,0"
-         id="path140" />
-    </clipPath>
-    <clipPath
-       id="clip-2">
-      <path
-         clip-rule="nonzero"
-         d="m 261,364.39844 h 4 v 31 h -4 z m 0,0"
-         id="path141" />
-    </clipPath>
   </defs>
   <g
      fill="var(--text-color)"
@@ -1013,7 +996,6 @@
        id="use1797" />
   </g>
   <g
-     clip-path="url(#clip-1)"
      id="g1799"
      transform="translate(-125.4625,-364.88126)">
     <g
@@ -1259,7 +1241,6 @@
        id="use1819" />
   </g>
   <g
-     clip-path="url(#clip-2)"
      id="g1822"
      transform="translate(-125.4625,-364.88126)">
     <g

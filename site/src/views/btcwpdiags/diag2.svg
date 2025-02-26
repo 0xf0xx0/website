@@ -4,69 +4,8 @@
 <svg
    height="35.25mm"
    viewBox="0 0 61.52 15.25"
-   version="1.1"
    id="diag2"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <defs
-     id="defs1">
-    <clipPath
-       id="clip-0">
-      <path
-         clip-rule="nonzero"
-         d="M 189.80078,598 H 225 v 1 h -35.19922 z m 0,0"
-         id="path110" />
-    </clipPath>
-    <clipPath
-       id="clip-1">
-      <path
-         clip-rule="nonzero"
-         d="m 415,596 h 7.60156 v 5 H 415 Z m 0,0"
-         id="path111" />
-    </clipPath>
-    <clipPath
-       id="clip-2">
-      <path
-         clip-rule="nonzero"
-         d="m 206,615 h 92 v 35.39844 h -92 z m 0,0"
-         id="path112" />
-    </clipPath>
-    <clipPath
-       id="clip-3">
-      <path
-         clip-rule="nonzero"
-         d="m 337,592.69922 h 23 V 610 h -23 z m 0,0"
-         id="path113" />
-    </clipPath>
-    <clipPath
-       id="clip-4">
-      <path
-         clip-rule="nonzero"
-         d="m 337,592.69922 h 23 V 611 h -23 z m 0,0"
-         id="path114" />
-    </clipPath>
-    <clipPath
-       id="clip-5">
-      <path
-         clip-rule="nonzero"
-         d="m 314,615 h 92 v 35.39844 h -92 z m 0,0"
-         id="path115" />
-    </clipPath>
-    <clipPath
-       id="clip-6">
-      <path
-         clip-rule="nonzero"
-         d="m 229,592.69922 h 24 V 610 h -24 z m 0,0"
-         id="path116" />
-    </clipPath>
-    <clipPath
-       id="clip-7">
-      <path
-         clip-rule="nonzero"
-         d="m 229,592.69922 h 24 V 611 h -24 z m 0,0"
-         id="path117" />
-    </clipPath>
-  </defs>
+   xmlns="http://www.w3.org/2000/svg">
   <g
      id="layer1"
      transform="translate(-55.827083,-111.91874)">
@@ -78,7 +17,6 @@
        id="path2192"
        style="stroke-width:0.264583" />
     <g
-       clip-path="url(#clip-0)"
        id="g2193"
        transform="matrix(0.26458333,0,0,0.26458333,5.6089603,-44.89959)">
       <path
@@ -111,7 +49,6 @@
        d="m 90.328336,114.96145 h 3.06958"
        id="path2195" />
     <g
-       clip-path="url(#clip-1)"
        id="g2196"
        transform="matrix(0.26458333,0,0,0.26458333,5.6089603,-44.89959)">
       <path
@@ -132,7 +69,6 @@
        d="M 99.324169,113.45354 H 115.8875"
        id="path2197" />
     <g
-       clip-path="url(#clip-2)"
        id="g2198"
        transform="matrix(0.26458333,0,0,0.26458333,5.6089603,-44.89959)">
       <path
@@ -394,7 +330,6 @@
       </g>
     </g>
     <g
-       clip-path="url(#clip-3)"
        id="g2215"
        transform="matrix(0.26458333,0,0,0.26458333,5.6089603,-44.89959)">
       <path
@@ -405,7 +340,6 @@
          id="path2214" />
     </g>
     <g
-       clip-path="url(#clip-4)"
        id="g2216"
        transform="matrix(0.26458333,0,0,0.26458333,5.6089603,-44.89959)">
       <path
@@ -473,7 +407,6 @@
       </g>
     </g>
     <g
-       clip-path="url(#clip-5)"
        id="g2221"
        transform="matrix(0.26458333,0,0,0.26458333,5.6089603,-44.89959)">
       <path
@@ -779,7 +712,6 @@
        d="M 72.33667,113.45354 H 93.397916"
        id="path2241" />
     <g
-       clip-path="url(#clip-6)"
        id="g2242"
        transform="matrix(0.26458333,0,0,0.26458333,5.6089603,-44.89959)">
       <path
@@ -790,7 +722,6 @@
          id="path2242" />
     </g>
     <g
-       clip-path="url(#clip-7)"
        id="g2243"
        transform="matrix(0.26458333,0,0,0.26458333,5.6089603,-44.89959)">
       <path
