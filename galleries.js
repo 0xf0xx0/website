@@ -35,7 +35,7 @@ const pixelsorts = {
         },
         {
             url: '/abandoned-californian-pool/sorted.jpg',
-            desc: 'this basic row sort came out better than expected',
+            desc: 'this came out better than expected',
             sourceURL: 'https://blog.dominey.photography/2022/05/18/anatomy-of-an-image-ep1-pool',
         },
         { url: '/therianoise/TheriaNoise.png', desc: '&#xe000;⎇' },
@@ -44,12 +44,12 @@ const pixelsorts = {
             desc: 'classic pixelsort with the city masked off',
             sourceURL: 'https://www.pexels.com/photo/concrete-bridge-near-buildings-during-golden-hour-1755683',
         },
-        { url: '/misc/lakepadden-sorted.png', desc: 'some pic of Lake Padden in Washington, USA' },
+        { url: '/misc/lakepadden-sorted.png' },
         {
             url: '/misc/vaporwavegarden-sorted.jpg',
             desc: 'i started layering sorts with this pic, i love how the two directions overlap :3',
         },
-        { url: '/misc/waterpark-sorted.jpg', desc: 'low-quality pic of a waterpark' },
+        { url: '/misc/waterpark-sorted.jpg' },
         {
             url: '/lakesurroundedwithmountain/pexels-eberhardgross-629161-sorted-mashup.jpg',
             desc:
