@@ -17,7 +17,7 @@
         {{! <meta name="og:site_name" content=""> }}
         <meta name='og:title' content='{{tabtitle}}' />
         <meta name='og:description' content='{{desc}}' />
-        <meta name='og:url' content='https://0xf0xx0.eth.limo/{{page}}' />
+        <meta name='og:url' content='https://0xf0xx0.eth.limo/{{path}}' />
         {{#if image}}
             <meta name='twitter:card' content='summary_large_image' />
             <meta name='og:image' content='{{image}}' />
@@ -45,10 +45,9 @@
             ...just ignore the 500gb of onionring js
         -->
         <script src='src/scripts/util.js' defer></script>
+        <script src='src/scripts/cgol.js' defer></script>
     </head>
     <body>
         {{{body}}}
-        <script src='src/scripts/cgol.js' defer></script>
     </body>
-    <!-- robots build robots -->
 </html>

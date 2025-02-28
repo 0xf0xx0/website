@@ -73,7 +73,7 @@ const pixelsorts = {
             credits: 'ESA/Webb, NASA & CSA, A. Adamo (Stockholm University) and the FEAST JWST team',
             sourceURL: 'https://esawebb.org/images/potm2310a/',
         },
-        { url: '/dark-brandon/sorted.jpeg', desc: 'dark brandooooooooooon' },
+        { url: '/darkbrandon/sorted.jpeg', desc: 'dark brandooooooooooon' },
         {
             url: '/lumn-forest/superpixel.jpg',
             desc: 'another version, this time using GIMPs superpixel filter to generate the mask',
@@ -85,7 +85,7 @@ const pixelsorts = {
             sourceURL: 'https://www.pexels.com/photo/green-leafed-trees-during-fog-time-167684',
         },
         {
-            url: '/dark-brandon/90-deg-spiral-masked.jpeg',
+            url: '/darkbrandon/90-deg-spiral-masked.jpeg',
             desc:
                 '/uj spiral sorting is cool, even cooler when you rotate the image furst' +
                 "<br>/rj dark brandon nooo don't smoke the digital spliff!",
