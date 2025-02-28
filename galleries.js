@@ -2,11 +2,43 @@ const pixelsorts = {
     tld: 'https://0xf0xuments.0xf0xx0.eth.limo/pixelsort-gens',
     images: [
         {
+            url: '/mutlnomah-falls/seam-60deg.jpg',
+            desc: 'mmmmmmm seam sorting,,,,,'
+        },
+        {
+            url: '/mutlnomah-falls/whirl.jpg',
+            desc: 'one day i\'ll figure out curved sorts, why are artists so secretive'
+        },
+        {
+            url: '/mutlnomah-falls/sorted.jpg',
+            desc: 'perfect pixelsorting pic'
+        },
+        {
+            url: '/nui-malama/seam.jpg',
+            desc: 'seam sorting is fun'
+        },
+        {
+            url: '/nui-malama/masked.jpg'
+        },
+        {
+            url: '/nui-malama/fullsort.jpg'
+        },
+        {
+            url: '/volcanid-ridge/volcanid-ridge.jpg'
+        },
+        {
+            url: '/snowcapped-mountain/sorted.jpg'
+        },
+        {
+            url: '/house-in-the-trees/house-in-the-trees.jpg',
+            desc:  'sometimes simple is all you need'
+        },
+        {
             url: '/abandoned-californian-pool/sorted.jpg',
             desc: 'this basic row sort came out better than expected',
             sourceURL: 'https://blog.dominey.photography/2022/05/18/anatomy-of-an-image-ep1-pool',
         },
-        { url: '/misc/TheriaNoise.png', desc: '&#xe000;⎇' },
+        { url: '/therianoise/TheriaNoise.png', desc: '&#xe000;⎇' },
         {
             url: '/bridgeskyline/right-then-down.jpg',
             desc: 'classic pixelsort with the city masked off',

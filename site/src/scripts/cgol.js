@@ -28,10 +28,10 @@ function cgol(field) {
             liveNeighbors += field[posIdx]?.[i + 1] === undefined ? field[posIdx][0] : field[posIdx][i + 1]
 
             /// guess i'll Optional<die>
-            if (!!field[ii][i]) {
+            if (field[ii][i]) {
                 /// "Any live cell with two or three live neighbours lives on to the next generation."
                 if (liveNeighbors === 2 || liveNeighbors === 3) {
-                    newField[ii][i] = field[ii][i]
+                    newField[ii][i] = 1
                 } else {
                     newField[ii][i] = 0
                 }
