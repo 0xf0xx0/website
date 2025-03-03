@@ -231,7 +231,7 @@ infinite number of trials to try to reach breakeven. We can calculate the probab
 reaches breakeven, or that an attacker ever catches up with the honest chain, as follows <a href="#ref8">[8]</a>:</p>
 {{{svg 'src/views/btcwpdiags/diag8.svg'}}}
 
-<p>Given our assumption that p > q, the probability drops exponentially as the number of blocks the
+<p>Given our assumption that <var>p > q</var>, the probability drops exponentially as the number of blocks the
 attacker has to catch up with increases. With the odds against him, if he doesn't make a lucky
 lunge forward early on, his chances become vanishingly small as he falls further behind.</p>
 
@@ -247,7 +247,7 @@ it continuously until he is lucky enough to get far enough ahead, then executing
 that moment. Once the transaction is sent, the dishonest sender starts working in secret on a
 parallel chain containing an alternate version of his transaction.</p>
 
-<p>The recipient waits until the transaction has been added to a block and z blocks have been
+<p>The recipient waits until the transaction has been added to a block and <var>z</var> blocks have been
 linked after it. He doesn't know the exact amount of progress the attacker has made, but
 assuming the honest blocks took the average expected time per block, the attacker's potential
 progress will be a Poisson distribution with expected value:</p>
@@ -280,7 +280,7 @@ double AttackerSuccessProbability(double q, int z)
 }
 </code>
 
-<p>Running some results, we can see the probability drop off exponentially with z.</p>
+<p>Running some results, we can see the probability drop off exponentially with <var>z</var>.</p>
 <pre>
     q=0.1
     z=0 P=1.0000000
@@ -309,7 +309,7 @@ double AttackerSuccessProbability(double q, int z)
     z=50 P=0.0000006
 </pre>
 
-<p>Solving for P less than 0.1%...</p>
+<p>Solving for <var>P</var> less than 0.1%...</p>
 <pre>
     P < 0.001
     q=0.10 z=5
@@ -374,9 +374,7 @@ them. Any needed rules and incentives can be enforced with this consensus mechan
 <footer>
 <hr/>
  <span class='section'>{{{wrappedlink 'bitcoin.org' 'https://bitcoin.org'}}}</span>
- <span class='section'>acquired
-    from my node with
-    bitcoin-cli
+ <span class='section'>bitcoin-cli
     getrawtransaction 54e48e5f5c656b26c3bca14a8c95aa583d07ebe84dde3b7dd4a78f4e4186e713 1
     | jq -r '.vout[].scriptPubKey.asm' | cut -d' ' -f 2-4 --output-delimiter='' | tr -d '\n'
     | head -c -145 | tail -c +17 | xxd -r -p > bitcoin.pdf
