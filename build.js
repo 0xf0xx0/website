@@ -25,7 +25,6 @@ handlebars.registerHelper('concat', (...arguments) => {
 })
 handlebars.registerHelper('populategallery', ({ data }) => {
     let galleryHTML = ''
-    console.log(data)
     const gallery = galleries[data.root.page]
     for (const img of gallery.images) {
         const src = `${gallery.tld}${img.url}`
