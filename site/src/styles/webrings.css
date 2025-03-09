@@ -62,12 +62,14 @@ a.webring-random::after {
     margin-bottom: -0.5ex !important;
 }
 
-/* pls dont ab00s !important */
-body #xenicRing {
+#xenicRing {
     margin: inherit !important;
 }
-body #xenicRing .webring-head {
+#xenicRing .webring-head {
     display: none !important;
+}
+#xenicFlag {
+    background: url('src/images/xenic-nonhuman-unity.png') !important;
 }
 
 /* mobile */

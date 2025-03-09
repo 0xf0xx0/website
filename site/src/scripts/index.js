@@ -32,18 +32,13 @@ const menuAction = (ev) => {
         }
 
         // unfocus
-        if (ev.key === 'ArrowRight') {
-            ev.preventDefault()
-            pane.focus()
-            return
-        }
         if (ev.key === 'Escape') {
             ev.preventDefault()
             elm.blur()
             return
         }
         // ignore everything else
-        if (ev.key !== 'Enter') {
+        if (!['ArrowRight', 'Enter'].includes(ev.key)) {
             return
         }
     }
