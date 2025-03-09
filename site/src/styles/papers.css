@@ -10,3 +10,17 @@ pre {
 ul, li {
     list-style-type: none;
 }
+
+.highlightable {
+    display: flex;
+}
+.highlightable > .targethighlight {
+    background-color: var(--gray);
+    transition: flex calc(var(--transition-normal) * 2);
+    border-radius: var(--border-radius);
+    margin: auto var(--gap);
+    height: 0.5em;
+}
+.highlightable:target > .targethighlight {
+    flex: 1;
+}
