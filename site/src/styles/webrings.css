@@ -69,7 +69,7 @@ a.webring-random::after {
     display: none !important;
 }
 #xenicFlag {
-    background: url('src/images/xenic-nonhuman-unity.png') !important;
+    background: url('/src/images/xenic-nonhuman-unity.png') !important;
 }
 
 /* mobile */
