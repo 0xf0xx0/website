@@ -2,29 +2,44 @@ const pixelsorts = {
     tld: 'https://0xf0xuments.0xf0xx0.eth.limo/pixelsort-gens',
     images: [
         {
+            url: '/what-goes-on-below/what-goes-on-below.jpg',
+            credits: 'source private',
+        },
+        {
+            url: '/rocky-ocean/rocky-ocean.jpeg',
+            credits: 'source private',
+        },
+        {
             url: '/mutlnomah-falls/seam-60deg.jpg',
-            desc: 'mmmmmmm seam sorting,,,,,'
+            desc: 'mmmmmmm seam sorting,,,,,',
+            sourceURL: 'https://www.pexels.com/photo/bridge-near-waterfall-358457'
         },
         {
             url: '/mutlnomah-falls/whirl.jpg',
-            desc: 'one day i\'ll figure out curved sorts, why are artists so secretive'
+            desc: 'one day i\'ll figure out curved sorts, why are artists so secretive',
+            sourceURL: 'https://www.pexels.com/photo/bridge-near-waterfall-358457'
         },
         {
             url: '/mutlnomah-falls/sorted.jpg',
-            desc: 'perfect pixelsorting pic'
+            desc: 'perfect pixelsorting pic',
+            sourceURL: 'https://www.pexels.com/photo/bridge-near-waterfall-358457'
         },
         {
             url: '/nui-malama/seam.jpg',
-            desc: 'seam sorting is fun'
+            desc: 'seam sorting is fun',
+            sourceURL: 'https://www.pexels.com/photo/mountain-valley-in-sunlight-19178084'
         },
         {
-            url: '/nui-malama/masked.jpg'
+            url: '/nui-malama/masked.jpg',
+            sourceURL: 'https://www.pexels.com/photo/mountain-valley-in-sunlight-19178084'
         },
         {
-            url: '/nui-malama/fullsort.jpg'
+            url: '/nui-malama/fullsort.jpg',
+            sourceURL: 'https://www.pexels.com/photo/mountain-valley-in-sunlight-19178084'
         },
         {
-            url: '/volcanid-ridge/volcanid-ridge.jpg'
+            url: '/volcanid-ridge/volcanid-ridge.jpg',
+            sourceURL: 'https://www.pexels.com/photo/a-close-up-of-a-rock-formation-28271610'
         },
         {
             url: '/snowcapped-mountain/sorted.jpg'

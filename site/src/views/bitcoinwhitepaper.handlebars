@@ -385,13 +385,13 @@ proof-of-work chain as proof of what happened while they were gone.</p>
 
 <footer>
 <hr/>
- <span class='section'>{{{wrappedlink 'bitcoin.org' 'https://bitcoin.org'}}}</span>
- <span class='section'>bitcoin-cli
+<span class='section'>{{{wrappedlink 'bitcoin.org' 'https://bitcoin.org'}}}</span>
+<span class='section'>bitcoin-cli
     getrawtransaction 54e48e5f5c656b26c3bca14a8c95aa583d07ebe84dde3b7dd4a78f4e4186e713 1
     | jq -r '.vout[].scriptPubKey.asm' | cut -d' ' -f 2-4 --output-delimiter='' | tr -d '\n'
     | head -c -145 | tail -c +17 | xxd -r -p > bitcoin.pdf
- </span>
- <span class='section'>sha256:
+</span>
+<span class='section'>sha256:
     109df3d54a2a98b37ee6bc8e400980982a0b543c5383cd664ee38df3b3c51961
 </span>
 <span class='section'>∞/21m{{{cursorblink}}}</span>
