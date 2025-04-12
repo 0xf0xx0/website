@@ -7,6 +7,7 @@ const pixelsorts = {
         },
         {
             url: '/rocky-ocean/rocky-ocean.jpeg',
+            desc: 'gimp 3 is nice',
             credits: 'source private',
         },
         {
