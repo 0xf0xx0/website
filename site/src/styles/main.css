@@ -82,6 +82,11 @@ blockquote {
 	border-radius: var(--border-radius);
 	padding: calc(var(--gap) * 2);
 }
+cite {
+    color: var(--gray);
+	list-style: inside disclosure-closed;
+	display: list-item;
+}
 
 /* Style the scrollbar if supported */
 @supports (scrollbar-color: auto) {
