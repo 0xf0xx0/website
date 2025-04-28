@@ -73,6 +73,16 @@ a:focus {
     filter: brightness(var(--dim));
 }
 
+blockquote {
+	font-style: italic;
+	/* background-image: var(--gapped-border); */
+	border-width: 0rem 0.3rem;
+	border-color: var(--gray);
+	border-style: solid;
+	border-radius: var(--border-radius);
+	padding: calc(var(--gap) * 2);
+}
+
 /* Style the scrollbar if supported */
 @supports (scrollbar-color: auto) {
     body {
