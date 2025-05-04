@@ -13,6 +13,7 @@ imageDims:
         <h1>{{tabtitle}}</h1>
         <h2 id='headerlinks'>
             {{! i really want no whitespace }}
+            <span class='section'>reload page if images don't finish loading</span>
             <span class='section'>{{{wrappedlink 'home' '/'}}}
             </span><br />
             <span class='section'>other sorters
@@ -26,12 +27,7 @@ imageDims:
                         'r/pixelsorting'
                         'https://old.reddit.com/r/pixelsorting'
                     }}}</span>{{!
-        }}</span><br />
-            <span class='section'>{{{wrappedlink
-                    'cc-by-nc-sa 4.0'
-                    'https://creativecommons.org/licenses/by-nc-sa/4.0'
-                }}}</span>
-            <span class='section'>reload page if images don't finish loading</span>
+        }}</span>
         </h2>
     </div>
     <hr />
@@ -39,5 +35,10 @@ imageDims:
 <div id='gallery'>
     {{{populategallery}}}
 </div>
-<hr />
-<footer>made with pixorder and gimp</footer>
+{{#footer}}
+<span class='section'>made with pixorder and gimp</span>
+<span class='section'>{{{wrappedlink
+                    'cc-by-nc-sa 4.0'
+                    'https://creativecommons.org/licenses/by-nc-sa/4.0'
+                }}} unless otherwise licensed</span>
+{{/footer}}

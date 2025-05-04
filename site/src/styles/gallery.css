@@ -3,9 +3,6 @@
     columns: 3;
     column-gap: var(--gap);
 }
-/* #headerlinks {
-    display: inline-block !important;
-}*/
 
 .img-desc {
     font-size: 0.8rem;

@@ -5,6 +5,7 @@ const { join } = require('node:path')
 const galleries = require('./galleries.js')
 const yaml = require('yaml')
 const ourIPNS = 'ipns://k51qzi5uqu5djge84e0oh3d7cy5l03130126g6kfxquex2wxrozshpdg8nd1sg'
+/// needs to be out here, used by gallery
 const wrappedLinkHelper = (text, url = '') => {
     let target = ''
     if (url !== ourIPNS && url.match(/^\w+?:\/\//gi)) {
@@ -12,13 +13,6 @@ const wrappedLinkHelper = (text, url = '') => {
     }
 
     return `&#xe007;<a href="${url}" ${target}>${text}</a>&#xe008;`
-}
-const prefixedLinkHelper = (text, url) => {
-    let target = ''
-    if (url !== ourIPNS && url.match(/^\w+?:\/\//gi)) {
-        target = 'target="_blank"' // open external links in a new tab
-    }
-    return `<a href="${url}" ${target}>[ ${text} ]</a>`
 }
 handlebars.registerHelper('concat', (...arguments) => {
     return arguments.slice(0, -1).join('')
@@ -31,21 +25,31 @@ handlebars.registerHelper('populategallery', ({ data }) => {
         /// usse the image path without the file ext as the id
         const divID = img.url.split('.').reverse().slice(1).join('.')
         let source = `&#xe007;${img.credits || 'source unknown'}&#xe008;`
+        let license = ''
         if (img.sourceURL) {
             source = wrappedLinkHelper(img.credits || 'source', img.sourceURL)
+        }
+        if (img.licenseURL) {
+            license = wrappedLinkHelper(img.license || 'license', img.licenseURL)
         }
         galleryHTML +=
             `<div class="img-container" id="${divID}">` +
             `<a href="${src}">` +
             `<img src="${src}"/>` +
             '</a>' +
-            (img.desc ? `<p class="img-desc">${img.desc} ${source}</p>` : '') +
+            `<p class="img-desc">${img.desc || ''} ${source} ${license}</p>` +
             '</div>\n'
     }
     return galleryHTML.trim()
 })
 handlebars.registerHelper('wrappedlink', wrappedLinkHelper)
-handlebars.registerHelper('hyperlink', prefixedLinkHelper)
+handlebars.registerHelper('hyperlink', (text, url) => {
+    let target = ''
+    if (url !== ourIPNS && url.match(/^\w+?:\/\//gi)) {
+        target = 'target="_blank"' // open external links in a new tab
+    }
+    return `<a href="${url}" ${target}>[ ${text} ]</a>`
+})
 handlebars.registerHelper('header', (maintext, subtext) => {
     if (typeof subtext === 'string') {
         subtext = subtext.trim().replace(/\\n/g, '<br>')
@@ -60,6 +64,9 @@ handlebars.registerHelper('header', (maintext, subtext) => {
     <hr />
     </div>
     `.trim()
+})
+handlebars.registerHelper('footer', (options) => {
+    return `<footer><hr/>${options.fn(this)}</footer>`
 })
 handlebars.registerHelper('svg', (path) => {
     return `<div class="svgcont">${readFileSync(join(__dirname, '/site/', path))}</div>`

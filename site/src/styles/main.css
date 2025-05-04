@@ -33,7 +33,7 @@ body {
 }
 
 hr {
-    color: var(--secondary-color);
+    color: var(--accent);
     border-radius: var(--border-radius);
     width: 100%; /* i wish hrs flexed :\ */
     border: 1px solid;
@@ -75,7 +75,6 @@ a:focus {
 
 blockquote {
 	font-style: italic;
-	/* background-image: var(--gapped-border); */
 	border-width: 0rem 0.3rem;
 	border-color: var(--gray);
 	border-style: solid;
@@ -91,7 +90,7 @@ cite {
 /* Style the scrollbar if supported */
 @supports (scrollbar-color: auto) {
     body {
-        scrollbar-color: var(--secondary-color) #0000;
+        scrollbar-color: var(--accent) #0000;
     }
 }
 
@@ -256,7 +255,7 @@ a {
 
 footer > .section:not(:last-child)::after {
     content: '\e000\00a0';
-    color: var(--secondary-color);
+    color: var(--accent);
 }
 
 @media screen and (max-width: 50rem), (pointer: coarse) {
