@@ -22,10 +22,10 @@ handlebars.registerHelper('populategallery', ({ data }) => {
     const gallery = galleries[data.root.page]
     for (const img of gallery.images) {
         const src = `${gallery.tld}${img.url}`
-        /// usse the image path without the file ext as the id
+        /// use the image path without the file ext as the id
         const divID = img.url.split('.').reverse().slice(1).join('.')
         let source = `&#xe007;${img.credits || 'source unknown'}&#xe008;`
-        let license = ''
+        let license = img.license ? `&#xe007;${img.license}&#xe008;` : ''
         if (img.sourceURL) {
             source = wrappedLinkHelper(img.credits || 'source', img.sourceURL)
         }
@@ -90,7 +90,7 @@ const LAYOUT_FILE = readFileSync(`${viewsDir}/${layoutFileName}`, 'utf-8')
 const LAYOUT = handlebars.compile(LAYOUT_FILE)
 const pawprint = '36A5 ECBE 51A7 FFD2 DC82 7FE6 C8BB 0195 E47B 7CD6'
 
-const DRY_RUN = process.env['DRY_RUN']
+const DRY_RUN = process.env.DRY_RUN
 
 const DEFAULT_CTX = {
     themecolor: '#262638',
@@ -108,7 +108,7 @@ function compileToHTML(page) {
         ...DEFAULT_CTX,
         ...metadata,
         page: fileName,
-        path: fileName === 'index' ? '' : `${fileName}.html`
+        path: fileName === 'index' ? '' : `${fileName}.html`,
     }
     extra.stylesheets
         ? (extra.stylesheets = extra.stylesheets

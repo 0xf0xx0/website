@@ -1,6 +1,30 @@
 const pixelsorts = {
-    tld: 'https://0xf0xuments.0xf0xx0.eth.limo/pixelsort-gens',
+    tld: process.env.DEV ? 'src/views/shrunk' : 'https://0xf0xuments.0xf0xx0.eth.limo/pixelsort-gens',
     images: [
+        {
+            url: '/wiltware/behindwave.jpg',
+            credits: 'wiltware',
+            sourceURL: 'https://wiltware.bandcamp.com',
+            license: 'all rights reserved wiltware'
+        },
+        {
+            url: '/wiltware/icon-final.jpg',
+            credits: 'wiltware',
+            sourceURL: 'https://wiltware.bandcamp.com',
+            license: 'all rights reserved wiltware'
+        },
+        {
+            url: '/wiltware/mirror-final.jpg',
+            credits: 'wiltware',
+            sourceURL: 'https://wiltware.bandcamp.com',
+            license: 'all rights reserved wiltware'
+        },
+        {
+            url: '/wiltware/mirror-full-spiral-seam.jpeg',
+            credits: 'wiltware',
+            sourceURL: 'https://wiltware.bandcamp.com',
+            license: 'all rights reserved wiltware'
+        },
         {
             url: '/what-goes-on-below/what-goes-on-below.jpg',
             credits: 'source private',
@@ -13,41 +37,41 @@ const pixelsorts = {
         {
             url: '/mutlnomah-falls/seam-60deg.jpg',
             desc: 'mmmmmmm seam sorting,,,,,',
-            sourceURL: 'https://www.pexels.com/photo/bridge-near-waterfall-358457'
+            sourceURL: 'https://www.pexels.com/photo/bridge-near-waterfall-358457',
         },
         {
             url: '/mutlnomah-falls/whirl.jpg',
-            desc: 'one day i\'ll figure out curved sorts, why are artists so secretive',
-            sourceURL: 'https://www.pexels.com/photo/bridge-near-waterfall-358457'
+            desc: "one day i'll figure out curved sorts, why are artists so secretive",
+            sourceURL: 'https://www.pexels.com/photo/bridge-near-waterfall-358457',
         },
         {
             url: '/mutlnomah-falls/sorted.jpg',
             desc: 'perfect pixelsorting pic',
-            sourceURL: 'https://www.pexels.com/photo/bridge-near-waterfall-358457'
+            sourceURL: 'https://www.pexels.com/photo/bridge-near-waterfall-358457',
         },
         {
             url: '/nui-malama/seam.jpg',
             desc: 'seam sorting is fun',
-            sourceURL: 'https://www.pexels.com/photo/mountain-valley-in-sunlight-19178084'
+            sourceURL: 'https://www.pexels.com/photo/mountain-valley-in-sunlight-19178084',
         },
         {
             url: '/nui-malama/masked.jpg',
-            sourceURL: 'https://www.pexels.com/photo/mountain-valley-in-sunlight-19178084'
+            sourceURL: 'https://www.pexels.com/photo/mountain-valley-in-sunlight-19178084',
         },
         {
             url: '/nui-malama/fullsort.jpg',
-            sourceURL: 'https://www.pexels.com/photo/mountain-valley-in-sunlight-19178084'
+            sourceURL: 'https://www.pexels.com/photo/mountain-valley-in-sunlight-19178084',
         },
         {
             url: '/volcanid-ridge/volcanid-ridge.jpg',
-            sourceURL: 'https://www.pexels.com/photo/a-close-up-of-a-rock-formation-28271610'
+            sourceURL: 'https://www.pexels.com/photo/a-close-up-of-a-rock-formation-28271610',
         },
         {
-            url: '/snowcapped-mountain/sorted.jpg'
+            url: '/snowcapped-mountain/sorted.jpg',
         },
         {
             url: '/house-in-the-trees/house-in-the-trees.jpg',
-            desc:  'sometimes simple is all you need'
+            desc: 'sometimes simple is all you need',
         },
         {
             url: '/abandoned-californian-pool/sorted.jpg',
@@ -104,7 +128,7 @@ const pixelsorts = {
             url: '/darkbrandon/90-deg-spiral-masked.jpeg',
             desc:
                 '/uj spiral sorting is cool, even cooler when you rotate the image furst' +
-                "<br>/rj dark brandon nooo don't smoke the digital spliff!",
+                "<br>/rj joes off that foxpiss, the stuffll make you change your gender frfr",
         },
         {
             url: '/sleepysnek/classic.jpg',
@@ -128,7 +152,7 @@ const pixelsorts = {
             sourceURL: 'https://www.pexels.com/photo/photo-of-buildings-during-nighttime-2603464/',
         },
         {
-            url: '/misc/walking.jpg',
+            url: '/walking/walking.jpg',
             desc: 'i really want more pics like this, walking into the glitch is so cool',
             sourceURL:
                 'https://www.pexels.com/photo/man-walking-in-solitude-in-yellow-light-on-a-foggy-night-19096790/',
@@ -163,10 +187,10 @@ const pixelsorts = {
 const eve = {
     tld: 'https://0xf0xuments.0xf0xx0.eth.limo/eve-screenshots',
     images: [
-        { url: '/Docked.png', source: 'myself' },
-        { url: '/CataclysmicVariable.png', source: 'myself' },
-        { url: '/DrifterHole1.png', source: 'myself' },
-        { url: '/SuccubusOnDrifterHole.png', source: 'myself' },
+        { url: '/Docked.png', credits: 'myself' },
+        { url: '/CataclysmicVariable.png', credits: 'myself' },
+        { url: '/DrifterHole1.png', credits: 'myself' },
+        { url: '/SuccubusOnDrifterHole.png', credits: 'myself' },
     ],
 }
 module.exports = {
