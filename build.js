@@ -109,6 +109,7 @@ function compileToHTML(page) {
         ...metadata,
         page: fileName,
         path: fileName === 'index' ? '' : `${fileName}.html`,
+        DEV: process.env.DEV
     }
     extra.stylesheets
         ? (extra.stylesheets = extra.stylesheets

@@ -11,35 +11,42 @@ function cgol(field) {
             let liveNeighbors = 0
             /// furst, check neighbors w/ wraparound
             /// top and bottom
-            liveNeighbors += field[ii]?.[i - 1] === undefined ? field[ii][dims - 1] : field[ii][i - 1]
-            liveNeighbors += field[ii]?.[i + 1] === undefined ? field[ii][0] : field[ii][i + 1]
+            liveNeighbors += field[ii]?.[i - 1] === undefined ? field[ii][dims - 1] > 0 : field[ii][i - 1] > 0
+            liveNeighbors += field[ii]?.[i + 1] === undefined ? field[ii][0] > 0 : field[ii][i + 1] > 0
             /// left and right
-            liveNeighbors += field[ii - 1]?.[i] === undefined ? field[dims - 1][i] : field[ii - 1][i]
-            liveNeighbors += field[ii + 1]?.[i] === undefined ? field[0][i] : field[ii + 1][i]
+            liveNeighbors += field[ii - 1]?.[i] === undefined ? field[dims - 1][i] > 0 : field[ii - 1][i] > 0
+            liveNeighbors += field[ii + 1]?.[i] === undefined ? field[0][i] > 0 : field[ii + 1][i] > 0
             /// and now diagonals
             let posIdx = (ii + 1) % dims
             let negIdx = ii - 1
             if (negIdx === -1) {
                 negIdx = dims - 1
             }
-            liveNeighbors += field[negIdx]?.[i - 1] === undefined ? field[negIdx][dims - 1] : field[negIdx][i - 1]
-            liveNeighbors += field[negIdx]?.[i + 1] === undefined ? field[negIdx][0] : field[negIdx][i + 1]
-            liveNeighbors += field[posIdx]?.[i - 1] === undefined ? field[posIdx][dims - 1] : field[posIdx][i - 1]
-            liveNeighbors += field[posIdx]?.[i + 1] === undefined ? field[posIdx][0] : field[posIdx][i + 1]
+            liveNeighbors += field[negIdx]?.[i - 1] === undefined ? field[negIdx][dims - 1] > 0 : field[negIdx][i - 1] > 0
+            liveNeighbors += field[negIdx]?.[i + 1] === undefined ? field[negIdx][0] > 0 : field[negIdx][i + 1] > 0
+            liveNeighbors += field[posIdx]?.[i - 1] === undefined ? field[posIdx][dims - 1] > 0 : field[posIdx][i - 1] > 0
+            liveNeighbors += field[posIdx]?.[i + 1] === undefined ? field[posIdx][0] > 0 : field[posIdx][i + 1] > 0
 
             /// guess i'll Optional<die>
-            if (field[ii][i]) {
+            if (field[ii][i] > 0) {
                 /// "Any live cell with two or three live neighbours lives on to the next generation."
                 if (liveNeighbors === 2 || liveNeighbors === 3) {
                     newField[ii][i] = 1
                 } else {
-                    newField[ii][i] = 0
+                    newField[ii][i] = -1
                 }
             } else {
                 /// we ded bish
                 if (liveNeighbors === 3) {
                     /// LAZARUS??????? :MaryPog:
                     newField[ii][i] = 1
+                } else {
+                    if (field[ii][i] < 0) {
+                        newField[ii][i] = field[ii][i] - 1
+                    }
+                    if (field[ii][i] < -3) {
+                        newField[ii][i] = 0
+                    }
                 }
             }
         }
@@ -53,7 +60,7 @@ function drawField(oldfield, field) {
             if (oldfield[ii][i] !== field[ii][i]) {
                 diff++
             }
-            ctx.fillStyle = !!field[ii][i] ? fgColor : bgColor
+            ctx.fillStyle = !!field[ii][i] ? `hsl(from ${fgColor} h s ${(50 + (12*field[ii][i]))}%)` : `hsl(from ${bgColor} h s l)`
             ctx.fillRect(ii * pixelSize, i * pixelSize, pixelSize, pixelSize)
         }
     }
@@ -103,10 +110,10 @@ async function seedField(seed, field) {
 }
 
 const params = new URLSearchParams(window.location.search)
-const dims = 32
-const stopThresh = 0.12
-const pixelSize = 4
-const tickMS = parseInt(params.get('cgoltickms')) || 300
+const dims = 16
+const stopThresh = 0.25
+const pixelSize = 16
+const tickMS = parseInt(params.get('cgoltickspeed')) || 300
 
 const icon = document.querySelector('link[rel="icon"]')
 const canvas = document.createElement('canvas')
@@ -114,12 +121,14 @@ const ctx = canvas.getContext('2d')
 let bgColor, fgColor
 canvas.width = dims * pixelSize
 canvas.height = dims * pixelSize
+const contdiv = document.createElement('div')
 
 /// not tracking you i swear, this is for seeding the game
 /// if you havent seen already, look in the favicon
 /// most visitors get a unique favicon :3
 const seedstring = `${navigator.userAgent}${navigator.hardwareConcurrency}${navigator.maxTouchPoints}`
-    + `${window.devicePixelRatio}${navigator.language}${navigator.buildID}${location.hostname}`
+    + `${window.devicePixelRatio}${navigator.language}`
+    + `${new Date().getTimezoneOffset()}${navigator.buildID}${location.hostname}`
     + `${navigator.oscpu}`
 
 seedField(seedstring, generateEmptyField(dims)).then((state) => {

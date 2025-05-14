@@ -107,6 +107,7 @@ stylesheets: [webrings]
 <hr />
 
 <div class='ring-container'>
+{{#unless DEV}}
     <div class='devring webring'>
         <div class='devring-container'>
             <span class='devring-title webring-title'><a href='https://devring.club/'>devring.club</a></span>
@@ -161,6 +162,7 @@ stylesheets: [webrings]
         <script defer type='text/javascript' src='https://symphony.surgery/queereligious/onionring-variables.js'></script>
         <script defer type='text/javascript' src='https://symphony.surgery/queereligious/onionring-widget.js'></script>
     </div>
+{{/unless}}
 </div>
 {{#footer}}
     <span class='section'>self-hosted
