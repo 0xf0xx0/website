@@ -5,33 +5,10 @@ const pixelsorts = {
             url: '/wiltware/behindwave.jpg',
             credits: 'wiltware',
             sourceURL: 'https://wiltware.bandcamp.com',
-            license: 'all rights reserved wiltware'
-        },
-        {
-            url: '/wiltware/icon-final.jpg',
-            credits: 'wiltware',
-            sourceURL: 'https://wiltware.bandcamp.com',
-            license: 'all rights reserved wiltware'
-        },
-        {
-            url: '/wiltware/mirror-final.jpg',
-            credits: 'wiltware',
-            sourceURL: 'https://wiltware.bandcamp.com',
-            license: 'all rights reserved wiltware'
-        },
-        {
-            url: '/wiltware/mirror-full-spiral-seam.jpeg',
-            credits: 'wiltware',
-            sourceURL: 'https://wiltware.bandcamp.com',
-            license: 'all rights reserved wiltware'
+            license: 'all rights reserved wiltware',
         },
         {
             url: '/what-goes-on-below/what-goes-on-below.jpg',
-            credits: 'source private',
-        },
-        {
-            url: '/rocky-ocean/rocky-ocean.jpeg',
-            desc: 'gimp 3 is nice',
             credits: 'source private',
         },
         {
@@ -73,12 +50,23 @@ const pixelsorts = {
             url: '/house-in-the-trees/house-in-the-trees.jpg',
             desc: 'sometimes simple is all you need',
         },
+        { url: '/therianoise/TheriaNoise.png', desc: '&#xe000;⎇' },
+        {
+            url: '/wiltware/icon-final.jpg',
+            credits: 'wiltware',
+            sourceURL: 'https://wiltware.bandcamp.com',
+            license: 'all rights reserved wiltware',
+        },
+        {
+            url: '/rocky-ocean/rocky-ocean.jpeg',
+            desc: 'gimp 3 is nice',
+            credits: 'source private',
+        },
         {
             url: '/abandoned-californian-pool/sorted.jpg',
             desc: 'this came out better than expected',
             sourceURL: 'https://blog.dominey.photography/2022/05/18/anatomy-of-an-image-ep1-pool',
         },
-        { url: '/therianoise/TheriaNoise.png', desc: '&#xe000;⎇' },
         {
             url: '/bridgeskyline/right-then-down.jpg',
             desc: 'classic pixelsort with the city masked off',
@@ -128,7 +116,19 @@ const pixelsorts = {
             url: '/darkbrandon/90-deg-spiral-masked.jpeg',
             desc:
                 '/uj spiral sorting is cool, even cooler when you rotate the image furst' +
-                "<br>/rj joes off that foxpiss, the stuffll make you change your gender frfr",
+                '<br>/rj joes off that foxpiss, the stuffll make you change your gender frfr',
+        },
+        {
+            url: '/wiltware/mirror-final.jpg',
+            credits: 'wiltware',
+            sourceURL: 'https://wiltware.bandcamp.com',
+            license: 'all rights reserved wiltware',
+        },
+        {
+            url: '/wiltware/mirror-full-spiral-seam.jpeg',
+            credits: 'wiltware',
+            sourceURL: 'https://wiltware.bandcamp.com',
+            license: 'all rights reserved wiltware',
         },
         {
             url: '/sleepysnek/classic.jpg',
@@ -184,16 +184,6 @@ const pixelsorts = {
         },
     ],
 }
-const eve = {
-    tld: 'https://0xf0xuments.0xf0xx0.eth.limo/eve-screenshots',
-    images: [
-        { url: '/Docked.png', credits: 'myself' },
-        { url: '/CataclysmicVariable.png', credits: 'myself' },
-        { url: '/DrifterHole1.png', credits: 'myself' },
-        { url: '/SuccubusOnDrifterHole.png', credits: 'myself' },
-    ],
-}
 module.exports = {
     pixelsorts,
-    eve,
 }

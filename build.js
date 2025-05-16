@@ -21,6 +21,7 @@ handlebars.registerHelper('concat', (...arguments) => {
 handlebars.registerHelper('populategallery', ({ data }) => {
     let galleryHTML = ''
     const gallery = galleries[data.root.page]
+    console.log(`processing gallery ${data.root.page}...`)
     for (const img of gallery.images) {
         const src = `${gallery.tld}${img.url}`
         /// use the image path without the file ext as the id
@@ -34,10 +35,14 @@ handlebars.registerHelper('populategallery', ({ data }) => {
             license = wrappedLinkHelper(img.license || 'license', img.licenseURL)
         }
         const info = execSync(`magick identify 'site/src/views/shrunk${img.url}'`).toString().split(' ')[2].split('x')
+
+        console.log(`blurhashing ${img.url}...`)
+        const blurhashed = execSync(`blurhash -d --input site/src/views/shrunk${img.url}`).toString().trim()
+
         galleryHTML +=
             `<div class="img-container" id="${divID}">` +
             `<a href="${src}">` +
-            `<img src="${src}" width="${info[0]}" height="${info[1]}" loading="lazy" />` +
+            `<img src="" blurhash="${blurhashed}" source="${src}" width="${info[0]}" height="${info[1]}" loading="lazy" />` +
             '</a>' +
             `<p class="img-desc">${img.desc || ''} ${source} ${license}</p>` +
             '</div>\n'
