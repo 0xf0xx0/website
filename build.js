@@ -4,6 +4,7 @@ const { readFileSync, writeFileSync, readdirSync } = require('node:fs')
 const { join } = require('node:path')
 const galleries = require('./galleries.js')
 const yaml = require('yaml')
+const { execSync } = require('node:child_process')
 const ourIPNS = 'ipns://k51qzi5uqu5djge84e0oh3d7cy5l03130126g6kfxquex2wxrozshpdg8nd1sg'
 /// needs to be out here, used by gallery
 const wrappedLinkHelper = (text, url = '') => {
@@ -32,10 +33,11 @@ handlebars.registerHelper('populategallery', ({ data }) => {
         if (img.licenseURL) {
             license = wrappedLinkHelper(img.license || 'license', img.licenseURL)
         }
+        const info = execSync(`magick identify 'site/src/views/shrunk${img.url}'`).toString().split(' ')[2].split('x')
         galleryHTML +=
             `<div class="img-container" id="${divID}">` +
             `<a href="${src}">` +
-            `<img src="${src}"/>` +
+            `<img src="${src}" width="${info[0]}" height="${info[1]}" loading="lazy" />` +
             '</a>' +
             `<p class="img-desc">${img.desc || ''} ${source} ${license}</p>` +
             '</div>\n'
@@ -109,7 +111,7 @@ function compileToHTML(page) {
         ...metadata,
         page: fileName,
         path: fileName === 'index' ? '' : `${fileName}.html`,
-        DEV: process.env.DEV
+        DEV: process.env.DEV,
     }
     extra.stylesheets
         ? (extra.stylesheets = extra.stylesheets
