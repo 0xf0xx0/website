@@ -37,7 +37,7 @@ handlebars.registerHelper('populategallery', ({ data }) => {
         const info = execSync(`magick identify 'site/src/views/shrunk${img.url}'`).toString().split(' ')[2].split('x')
 
         console.log(`blurhashing ${img.url}...`)
-        const blurhashed = execSync(`blurhash -d --input site/src/views/shrunk${img.url}`).toString().trim()
+        const blurhashed = execSync(`blurhash site/src/views/shrunk${img.url}`).toString().trim()
 
         galleryHTML +=
             `<div class="img-container" id="${divID}">` +
