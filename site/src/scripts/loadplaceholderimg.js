@@ -11,7 +11,7 @@ function placeholder(src, origImgElm) {
             img.src = src
             /// i dont like this but it fixes the issue
             /// https://stackoverflow.com/questions/65146920/domexception-invalid-image-request
-            img.addEventListener("load", () => {
+            img.addEventListener('load', () => {
                 img.decode().then(() => {
                     origImgElm.src = src
                 })
@@ -29,15 +29,15 @@ function placeholder(src, origImgElm) {
     blurhashcanvas.width = w
     blurhashcanvas.height = h
 
-    const blurhashimageData = blurhashctx.createImageData(w,h)
+    const blurhashimageData = blurhashctx.createImageData(w, h)
     blurhashimageData.data.set(pixels)
     blurhashctx.putImageData(blurhashimageData, 0, 0)
-    blurhashcanvas.convertToBlob().then((v) => {
+    blurhashcanvas.toBlob((v) => {
         origImgElm.src = URL.createObjectURL(v)
     })
 }
 
-const blurhashcanvas = new OffscreenCanvas(0, 0)
+const blurhashcanvas = document.createElement('canvas')
 const blurhashctx = blurhashcanvas.getContext('2d')
 for (const img of document.body.getElementsByTagName('img')) {
     placeholder(img.getAttribute('source'), img)
