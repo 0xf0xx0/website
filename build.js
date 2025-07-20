@@ -5,7 +5,7 @@ const { join } = require('node:path')
 const galleries = require('./galleries.js')
 const yaml = require('yaml')
 const { execSync } = require('node:child_process')
-const ourIPNS = 'ipns://k51qzi5uqu5djge84e0oh3d7cy5l03130126g6kfxquex2wxrozshpdg8nd1sg'
+const ourIPNS = 'ipns://k51qzi5uqu5dj1i56kb5hursj0qmfl4mc9ri82i827tuh0ap6dmpyckmlg0sws'
 /// needs to be out here, used by gallery
 const wrappedLinkHelper = (text, url = '') => {
     let target = ''
@@ -25,7 +25,7 @@ handlebars.registerHelper('populategallery', ({ data }) => {
     for (const img of gallery.images) {
         const src = `${gallery.tld}${img.url}`
         /// use the image path without the file ext as the id
-        const divID = img.url.split('.').reverse().slice(1).join('.')
+        const divID = img.url.split('.')[0]
         let source = `&#xe007;${img.credits || 'source unknown'}&#xe008;`
         let license = img.license ? `&#xe007;${img.license}&#xe008;` : ''
         if (img.sourceURL) {
@@ -34,9 +34,9 @@ handlebars.registerHelper('populategallery', ({ data }) => {
         if (img.licenseURL) {
             license = wrappedLinkHelper(img.license || 'license', img.licenseURL)
         }
-        const info = execSync(`magick identify 'site/src/views/shrunk${img.url}'`).toString().split(' ')[2].split('x')
 
         console.log(`blurhashing ${img.url}...`)
+        const info = execSync(`magick identify 'site/src/views/shrunk${img.url}'`).toString().split(' ')[2].split('x')
         const blurhashed = execSync(`blurhash site/src/views/shrunk${img.url}`).toString().trim()
 
         galleryHTML +=
@@ -52,6 +52,7 @@ handlebars.registerHelper('populategallery', ({ data }) => {
 handlebars.registerHelper('wrappedlink', wrappedLinkHelper)
 handlebars.registerHelper('hyperlink', (text, url) => {
     let target = ''
+    console.log(url)
     if (url !== ourIPNS && url.match(/^\w+?:\/\//gi)) {
         target = 'target="_blank"' // open external links in a new tab
     }
@@ -102,6 +103,7 @@ const DRY_RUN = process.env.DRY_RUN
 const DEFAULT_CTX = {
     themecolor: '#262638',
     author: '0xf0xx0',
+    ipns: ourIPNS,
 }
 function compileToHTML(page) {
     const file = readFileSync(`${viewsDir}/${page}`, 'utf-8')
