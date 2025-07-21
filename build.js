@@ -52,7 +52,6 @@ handlebars.registerHelper('populategallery', ({ data }) => {
 handlebars.registerHelper('wrappedlink', wrappedLinkHelper)
 handlebars.registerHelper('hyperlink', (text, url) => {
     let target = ''
-    console.log(url)
     if (url !== ourIPNS && url.match(/^\w+?:\/\//gi)) {
         target = 'target="_blank"' // open external links in a new tab
     }
