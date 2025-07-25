@@ -6,7 +6,7 @@ const galleries = require('./galleries.js')
 const yaml = require('yaml')
 const { execSync } = require('node:child_process')
 const ourIPNS = 'ipns://k51qzi5uqu5dj1i56kb5hursj0qmfl4mc9ri82i827tuh0ap6dmpyckmlg0sws'
-/// needs to be out here, used by gallery
+
 const wrappedLinkHelper = (text, url = '') => {
     let target = ''
     if (url !== ourIPNS && url.match(/^\w+?:\/\//gi)) {
