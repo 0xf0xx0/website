@@ -43,7 +43,8 @@ a.webring-random::after {
 #xenicRing {
     margin: inherit !important;
 }
-body #xenicRing .webring-head {
+body #xenicRing tbody tr:first-child,
+body #xenicRing tbody tr:last-child {
     display: none !important;
 }
 #xenicFlag {
