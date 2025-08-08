@@ -1,6 +1,45 @@
 @import './normalize.css';
-@import './font.css';
-@import './variables.css';
+
+@font-face {
+    font-family: Unitblock;
+    src: url(../fonts/Unitblock.woff2);
+}
+@font-face {
+    font-family: Alterbeing;
+    src: url(../fonts/alterbeing.woff2);
+}
+
+:root {
+    --background-color: #0b0e0d;
+    --text-color: #acb7b4;
+    --link-color: #768b55;
+    --accent: #5f5a4c;
+    --primary-color: #96887a;
+    --gray: #556364;
+
+    --transition-normal: 333ms;
+    --transition-quick: 200ms;
+    --gap: 0.3rem;
+    --border-radius: 0.2rem;
+    --dim: 63%;
+
+    --gapped-border: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='4' ry='4' stroke='%2363726eFF' stroke-width='3' stroke-dasharray='12%2c66%2c6' stroke-dashoffset='0' stroke-linecap='butt'/%3e%3c/svg%3e");
+}
+
+@keyframes cursor-blink {
+    99.99%,
+    50.01% {
+        opacity: 0;
+    }
+    0%,
+    50% {
+        opacity: 1;
+    }
+}
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
 
 html,
 body {
