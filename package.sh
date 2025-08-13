@@ -4,7 +4,7 @@ set -eu
 hash=$(git rev-parse HEAD | head -c 7)
 out="./.out/$hash"
 
-node ./build.js
+pnpm build
 mkdir -pv "./.out/$hash"
 cp -rv ./site/* ./site/.* "$out"
 rm -rv "$out/src/views"
