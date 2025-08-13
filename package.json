@@ -4,5 +4,8 @@
     "scripts": {
         "build": "go run build.go galleries.go",
         "devbuild": "env DEV=true go run build.go galleries.go"
+    },
+    "dependencies": {
+        "fast-blurhash": "^1.1.4"
     }
 }
