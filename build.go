@@ -92,6 +92,9 @@ func registerHelpers() {
 	raymond.RegisterHelper("concat", func(a, b string) raymond.SafeString {
 		return raymond.SafeString(a+b)
 	})
+	raymond.RegisterHelper("script", func(url string) raymond.SafeString {
+		return raymond.SafeString(`<script defer src='`+url+"'></script>")
+	})
 	raymond.RegisterHelper("wrappedlink", wrappedLinkHelper)
 	raymond.RegisterHelper("populategallery", func(options *raymond.Options) raymond.SafeString {
 		page := options.ValueStr("page")

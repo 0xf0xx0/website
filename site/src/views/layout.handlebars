@@ -6,6 +6,8 @@
 <html>
     <head>
         <title>{{tabtitle}}</title>
+        <link rel="preload" href="src/fonts/Unitblock.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="src/fonts/alterbeing.woff2" as="font" type="font/woff2" crossorigin>
         <link rel="stylesheet" type="text/css" href="src/styles/main.css" />
         {{{stylesheets}}}
         {{! Meta tags }}
@@ -39,16 +41,14 @@
 
         {{! for cgol }}
         <link rel='icon' type='image/png' />
-        <link rel="preload" href="src/fonts/Unitblock.woff2" as="font" type="font/woff2" crossorigin>
-        <link rel="preload" href="src/fonts/alterbeing.woff2" as="font" type="font/woff2" crossorigin>
         <!-- util -->
         <!--
             imagine needin to import 10-30mb of js
             could never be me
             ...just ignore the 500gb of onionring js
         -->
-        <script src='src/scripts/util.js' defer></script>
-        <script src='src/scripts/cgol.js' defer></script>
+        {{{script 'src/scripts/util.js'}}}
+        {{{script 'src/scripts/cgol.js'}}}
     </head>
     <body>
         {{{body}}}
