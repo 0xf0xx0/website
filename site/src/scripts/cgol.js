@@ -140,7 +140,7 @@ async function seedField(seed, field) {
     occupiedPixes[s] = true;
     field[x][(s - x) / dims] = 1;
 
-    let max = Math.floor(TOTAL_PIX * 0.33);
+    let max = Math.round(TOTAL_PIX * dlaStopThresh);
     let pos = 0;
     let i = 0;
     let iters = 0;
@@ -162,7 +162,7 @@ async function seedField(seed, field) {
             clearInterval(inter);
             /// start cgol and keep going until we stabilize
             /// lower thresh = less alive at the end
-            const minUpdates = Math.ceil(dims * dims * stopThresh);
+            const minUpdates = Math.ceil(dims * dims * cgolStopThresh);
             const cgolinter = setInterval(() => {
                 [oldfield, field] = [field, cgol(field)];
                 if (drawField(oldfield, field) <= minUpdates) {
@@ -212,7 +212,8 @@ function ridgeStep(rng, prevPos, field, occupiedPixes) {
 
 const params = new URLSearchParams(window.location.search);
 const dims = 16; /// any bigger and it takes too long to execute
-const stopThresh = 0.25;
+const cgolStopThresh = 0.25;
+const dlaStopThresh = 0.53;
 const pixelSize = 16;
 const tickMS = parseInt(params.get("cgoltickspeed")) || 300;
 
