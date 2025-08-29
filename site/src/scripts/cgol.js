@@ -65,6 +65,7 @@ function cgol(field) {
                     /// LAZARUS??????? :MaryPog:
                     newField[ii][i] = 1;
                 } else {
+                    /// time decay
                     if (field[ii][i] < 0) {
                         newField[ii][i] = field[ii][i] - 1;
                     }
@@ -134,19 +135,21 @@ async function seedField(seed, field) {
 
     let occupiedPixes = {};
     let TOTAL_PIX = dims * dims;
-    let s = randPos(rng, TOTAL_PIX);
-    let x = s % dims;
-    console.log("seed at", s);
-    occupiedPixes[s] = true;
-    field[x][(s - x) / dims] = 1;
+    for (let i = 0; i < 5; i++) {
+        let s = randPos(rng, TOTAL_PIX);
+        let x = s % dims;
+        console.log("seed at", s);
+        occupiedPixes[s] = true;
+        field[x][(s - x) / dims] = 1;
+    }
 
     let max = Math.round(TOTAL_PIX * dlaStopThresh);
     let pos = 0;
     let i = 0;
     let iters = 0;
-    console.log("starting dla")
+    console.log("starting dla");
     const inter = setInterval(() => {
-        let newPos = ridgeStep(rng, pos, field, occupiedPixes);
+        let newPos = dla(rng, pos, field, occupiedPixes);
         iters++;
         if (newPos == -1) {
             pos = 0;
@@ -177,22 +180,47 @@ function randPos(rng, maxPos) {
     return Math.round(rng() * maxPos);
 }
 
-function ridgeStep(rng, prevPos, field, occupiedPixes) {
+function dla(rng, prevPos, field, occupiedPixes) {
     let TOTAL_PIX = dims * dims;
     let SIZE = dims;
     let pos = prevPos;
     /// small optimization: move either -1, 0, or 1
-    let newX = (randPos(rng, 64)%3) - 1;
-    let newY = (randPos(rng, 64)%3) - 1;
-    /// we wanna actually mewwwwvuhhhh
-    while (newX == 0 && newY == 0) {
-        newX = (randPos(rng, 64)%3) - 1;
-        newY = (randPos(rng, 64)%3) - 1;
-    }
-    let targetPos = pos + newY * SIZE + newX;
+    // let newX = (randPos(rng, 69)%3) - 1;
+    // let newY = (randPos(rng, 69)%3) - 1;
+    // /// we wanna actually mewwwwvuhhhh
+    // while (newX == 0 && newY == 0) {
+    //     newX = (randPos(rng, 69)%3) - 1;
+    //     newY = (randPos(rng, 69)%3) - 1;
+    // }
+    // let targetPos = pos + newY * SIZE + newX;
 
-    if (targetPos < 0 || targetPos > TOTAL_PIX) {
-        targetPos = randPos(rng, TOTAL_PIX);
+    let dir = randPos(rng, 64) % 4;
+    let targetPos;
+    /// this is a lot more interesting of a dla
+    switch (dir) {
+        case 0: {
+            targetPos = pos + SIZE;
+            break;
+        }
+        case 1: {
+            targetPos = pos + 1;
+            break;
+        }
+        case 2: {
+            targetPos = pos - SIZE;
+            break;
+        }
+        case 3: {
+            targetPos = pos - 1;
+            break;
+        }
+    }
+
+    if (targetPos < 0) {
+        // targetPos = randPos(rng, TOTAL_PIX);
+        targetPos += TOTAL_PIX;
+    } else if (targetPos > TOTAL_PIX) {
+        targetPos -= TOTAL_PIX;
     }
     let x = pos % SIZE;
     let y = (pos - x) / SIZE;
@@ -238,28 +266,6 @@ window.addEventListener("load", () => {
     const computedStyle = getComputedStyle(document.documentElement);
     bgColor = computedStyle.getPropertyValue("--background-color");
     fgColor = computedStyle.getPropertyValue("--text-color");
+
     seedField(seedstring, generateEmptyField(dims));
 });
-/*
-seedField(seedstring, generateEmptyField(dims)).then((state) => {
-
-    window.addEventListener(
-        "load",
-        () => {
-            const computedStyle = getComputedStyle(document.documentElement);
-            bgColor = computedStyle.getPropertyValue("--background-color");
-            fgColor = computedStyle.getPropertyValue("--text-color");
-
-            const inter = setInterval(() => {
-
-            }, tickMS);
-
-            /// draw
-            drawField(state, state);
-
-
-        },
-        false,
-    );
-});
-*/
