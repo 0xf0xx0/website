@@ -130,7 +130,7 @@ function splitmix32(a) {
         return ((t = t ^ (t >>> 15)) >>> 0) / 4294967296;
     };
 }
-async function seedField(seed, field) {
+async function start(seed, field) {
     const rng = splitmix32(await digestSeedString(seed));
 
     let occupiedPixes = {};
@@ -226,13 +226,11 @@ function dla(rng, prevPos, field, occupiedPixes) {
     }
     return targetPos;
 }
-
-const params = new URLSearchParams(window.location.search);
 const dims = 16; /// any bigger and it takes too long to execute
-const cgolStopThresh = 0.25;
-const dlaStopThresh = 0.53;
+const cgolStopThresh = 0.30;
+const dlaStopThresh = 0.46;
 const pixelSize = 16;
-const tickMS = parseInt(params.get("cgoltickspeed")) || 300;
+const tickMS = 300;
 
 const icon = document.querySelector('link[rel="icon"]');
 const canvas = document.createElement("canvas");
@@ -256,5 +254,5 @@ window.addEventListener("load", () => {
     bgColor = computedStyle.getPropertyValue("--background-color");
     fgColor = computedStyle.getPropertyValue("--text-color");
 
-    seedField(seedstring, generateEmptyField(dims));
+    start(seedstring, generateEmptyField(dims));
 });
