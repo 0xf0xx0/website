@@ -135,7 +135,7 @@ async function seedField(seed, field) {
 
     let occupiedPixes = {};
     let TOTAL_PIX = dims * dims;
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 3; i++) {
         let s = randPos(rng, TOTAL_PIX);
         let x = s % dims;
         console.log("seed at", s);
@@ -184,19 +184,11 @@ function dla(rng, prevPos, field, occupiedPixes) {
     let TOTAL_PIX = dims * dims;
     let SIZE = dims;
     let pos = prevPos;
-    /// small optimization: move either -1, 0, or 1
-    // let newX = (randPos(rng, 69)%3) - 1;
-    // let newY = (randPos(rng, 69)%3) - 1;
-    // /// we wanna actually mewwwwvuhhhh
-    // while (newX == 0 && newY == 0) {
-    //     newX = (randPos(rng, 69)%3) - 1;
-    //     newY = (randPos(rng, 69)%3) - 1;
-    // }
-    // let targetPos = pos + newY * SIZE + newX;
 
     let dir = randPos(rng, 64) % 4;
     let targetPos;
     /// this is a lot more interesting of a dla
+    /// way slower tho
     switch (dir) {
         case 0: {
             targetPos = pos + SIZE;
@@ -217,10 +209,7 @@ function dla(rng, prevPos, field, occupiedPixes) {
     }
 
     if (targetPos < 0) {
-        // targetPos = randPos(rng, TOTAL_PIX);
-        targetPos += TOTAL_PIX;
-    } else if (targetPos > TOTAL_PIX) {
-        targetPos -= TOTAL_PIX;
+        targetPos = randPos(rng, TOTAL_PIX);
     }
     let x = pos % SIZE;
     let y = (pos - x) / SIZE;
