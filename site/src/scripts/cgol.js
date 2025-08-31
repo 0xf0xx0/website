@@ -4,16 +4,16 @@
 **/
 
 function cgol(field) {
-    let newField = generateEmptyField(dims);
-    for (let i = 0; i < dims; i++) {
-        for (let ii = 0; ii < dims; ii++) {
+    let newField = generateEmptyField(SIZE);
+    for (let i = 0; i < SIZE; i++) {
+        for (let ii = 0; ii < SIZE; ii++) {
             /// cell check!
             let liveNeighbors = 0;
             /// furst, check neighbors w/ wraparound
             /// top and bottom
             liveNeighbors +=
                 field[ii]?.[i - 1] === undefined
-                    ? field[ii][dims - 1] > 0
+                    ? field[ii][SIZE - 1] > 0
                     : field[ii][i - 1] > 0;
             liveNeighbors +=
                 field[ii]?.[i + 1] === undefined
@@ -22,21 +22,21 @@ function cgol(field) {
             /// left and right
             liveNeighbors +=
                 field[ii - 1]?.[i] === undefined
-                    ? field[dims - 1][i] > 0
+                    ? field[SIZE - 1][i] > 0
                     : field[ii - 1][i] > 0;
             liveNeighbors +=
                 field[ii + 1]?.[i] === undefined
                     ? field[0][i] > 0
                     : field[ii + 1][i] > 0;
             /// and now diagonals
-            let posIdx = (ii + 1) % dims;
+            let posIdx = (ii + 1) % SIZE;
             let negIdx = ii - 1;
             if (negIdx === -1) {
-                negIdx = dims - 1;
+                negIdx = SIZE - 1;
             }
             liveNeighbors +=
                 field[negIdx]?.[i - 1] === undefined
-                    ? field[negIdx][dims - 1] > 0
+                    ? field[negIdx][SIZE - 1] > 0
                     : field[negIdx][i - 1] > 0;
             liveNeighbors +=
                 field[negIdx]?.[i + 1] === undefined
@@ -44,7 +44,7 @@ function cgol(field) {
                     : field[negIdx][i + 1] > 0;
             liveNeighbors +=
                 field[posIdx]?.[i - 1] === undefined
-                    ? field[posIdx][dims - 1] > 0
+                    ? field[posIdx][SIZE - 1] > 0
                     : field[posIdx][i - 1] > 0;
             liveNeighbors +=
                 field[posIdx]?.[i + 1] === undefined
@@ -80,8 +80,8 @@ function cgol(field) {
 }
 function drawField(oldfield, field) {
     let diff = 0;
-    for (let i = 0; i < dims; i++) {
-        for (let ii = 0; ii < dims; ii++) {
+    for (let i = 0; i < SIZE; i++) {
+        for (let ii = 0; ii < SIZE; ii++) {
             if (oldfield[ii][i] !== field[ii][i]) {
                 diff++;
             }
@@ -95,9 +95,9 @@ function drawField(oldfield, field) {
     return diff;
 }
 function generateEmptyField() {
-    let field = Array(dims);
-    for (let i = 0; i < dims; i++) {
-        field[i] = Array(dims).fill(0);
+    let field = Array(SIZE);
+    for (let i = 0; i < SIZE; i++) {
+        field[i] = Array(SIZE).fill(0);
     }
     return field;
 }
@@ -133,15 +133,15 @@ function splitmix32(a) {
 async function start(seed, field) {
     const rng = splitmix32(await digestSeedString(seed));
 
-    let occupiedPixes = {};
-    let TOTAL_PIX = dims * dims;
-    for (let i = 0; i < 3; i++) {
-        let s = randPos(rng, TOTAL_PIX);
-        let x = s % dims;
-        console.log("seed at", s);
-        occupiedPixes[s] = true;
-        field[x][(s - x) / dims] = 1;
+    for (let i = 0; i < 15; i++) {
+        rng();
     }
+    let occupiedPixes = {};
+    let s = randPos(rng, TOTAL_PIX);
+    let x = s % SIZE;
+    console.log("seed at", s);
+    occupiedPixes[s] = true;
+    field[x][(s - x) / SIZE] = 1;
 
     let max = Math.round(TOTAL_PIX * dlaStopThresh);
     let pos = 0;
@@ -165,7 +165,7 @@ async function start(seed, field) {
             clearInterval(inter);
             /// start cgol and keep going until we stabilize
             /// lower thresh = less alive at the end
-            const minUpdates = Math.ceil(dims * dims * cgolStopThresh);
+            const minUpdates = Math.ceil(SIZE * SIZE * cgolStopThresh);
             const cgolinter = setInterval(() => {
                 [oldfield, field] = [field, cgol(field)];
                 if (drawField(oldfield, field) <= minUpdates) {
@@ -181,8 +181,6 @@ function randPos(rng, maxPos) {
 }
 
 function dla(rng, prevPos, field, occupiedPixes) {
-    let TOTAL_PIX = dims * dims;
-    let SIZE = dims;
     let pos = prevPos;
 
     let dir = randPos(rng, 64) % 4;
@@ -218,6 +216,7 @@ function dla(rng, prevPos, field, occupiedPixes) {
         occupiedPixes[pos] = true;
         field[x][y] = 1;
         targetPos = -1;
+        drawField(field, field);
     } else {
         /// draw the current position
         field[x][y] = 1;
@@ -226,8 +225,9 @@ function dla(rng, prevPos, field, occupiedPixes) {
     }
     return targetPos;
 }
-const dims = 16; /// any bigger and it takes too long to execute
-const cgolStopThresh = 0.30;
+const SIZE = 16;
+const TOTAL_PIX = SIZE * SIZE;
+const cgolStopThresh = 0.3;
 const dlaStopThresh = 0.46;
 const pixelSize = 16;
 const tickMS = 300;
@@ -236,8 +236,8 @@ const icon = document.querySelector('link[rel="icon"]');
 const canvas = document.createElement("canvas");
 const ctx = canvas.getContext("2d");
 let bgColor, fgColor;
-canvas.width = dims * pixelSize;
-canvas.height = dims * pixelSize;
+canvas.width = SIZE * pixelSize;
+canvas.height = SIZE * pixelSize;
 const contdiv = document.createElement("div");
 
 /// not tracking you i swear, this is for seeding the game
@@ -254,5 +254,5 @@ window.addEventListener("load", () => {
     bgColor = computedStyle.getPropertyValue("--background-color");
     fgColor = computedStyle.getPropertyValue("--text-color");
 
-    start(seedstring, generateEmptyField(dims));
+    start(seedstring, generateEmptyField(SIZE));
 });
