@@ -78,6 +78,57 @@ function cgol(field) {
     }
     return newField;
 }
+function dla(rng, prevPos, field, occupiedPixes) {
+    let pos = prevPos;
+
+    let dir = randPos(rng, 64) % 5;
+    let targetPos = pos;
+    /// this is a lot more interesting of a dla
+    /// way slower tho
+    switch (dir) {
+        case 0: {
+            targetPos = pos + SIZE;
+            break;
+        }
+        case 1: {
+            targetPos = pos + 1;
+            break;
+        }
+        case 2: {
+            targetPos = pos - SIZE;
+            break;
+        }
+        case 3: {
+            targetPos = pos - 1;
+            break;
+        }
+        case 4: {
+            /// wildcard
+            /// this somehow breaks cell placing but idc it makes for a better cgol
+            targetPos = pos * randPos(rng, TOTAL_PIX) % TOTAL_PIX;
+            break;
+        }
+    }
+
+    if (targetPos < 0 || targetPos > TOTAL_PIX) {
+        targetPos = randPos(rng, TOTAL_PIX);
+    }
+    let x = pos % SIZE;
+    let y = (pos - x) / SIZE;
+    if (occupiedPixes[targetPos]) {
+        /// we hit something! stop
+        occupiedPixes[pos] = true;
+        field[x][y] = 1;
+        targetPos = -1;
+        drawField(field, field);
+    } else {
+        /// draw the current position
+        field[x][y] = 1;
+        drawField(field, field);
+        field[x][y] = 0;
+    }
+    return targetPos;
+}
 function drawField(oldfield, field) {
     let diff = 0;
     for (let i = 0; i < SIZE; i++) {
@@ -137,11 +188,13 @@ async function start(seed, field) {
         rng();
     }
     let occupiedPixes = {};
-    let s = randPos(rng, TOTAL_PIX);
-    let x = s % SIZE;
-    console.log("seed at", s);
-    occupiedPixes[s] = true;
-    field[x][(s - x) / SIZE] = 1;
+    for (let i = 0; i < 3; i++) {
+        let s = randPos(rng, TOTAL_PIX);
+        let x = s % SIZE;
+        console.log("seed at", s);
+        occupiedPixes[s] = true;
+        field[x][(s - x) / SIZE] = 1;
+    }
 
     let max = Math.round(TOTAL_PIX * dlaStopThresh);
     let pos = 0;
@@ -180,54 +233,9 @@ function randPos(rng, maxPos) {
     return Math.round(rng() * maxPos);
 }
 
-function dla(rng, prevPos, field, occupiedPixes) {
-    let pos = prevPos;
-
-    let dir = randPos(rng, 64) % 4;
-    let targetPos;
-    /// this is a lot more interesting of a dla
-    /// way slower tho
-    switch (dir) {
-        case 0: {
-            targetPos = pos + SIZE;
-            break;
-        }
-        case 1: {
-            targetPos = pos + 1;
-            break;
-        }
-        case 2: {
-            targetPos = pos - SIZE;
-            break;
-        }
-        case 3: {
-            targetPos = pos - 1;
-            break;
-        }
-    }
-
-    if (targetPos < 0) {
-        targetPos = randPos(rng, TOTAL_PIX);
-    }
-    let x = pos % SIZE;
-    let y = (pos - x) / SIZE;
-    if (occupiedPixes[targetPos]) {
-        /// we hit something! stop
-        occupiedPixes[pos] = true;
-        field[x][y] = 1;
-        targetPos = -1;
-        drawField(field, field);
-    } else {
-        /// draw the current position
-        field[x][y] = 1;
-        drawField(field, field);
-        field[x][y] = 0;
-    }
-    return targetPos;
-}
 const SIZE = 16;
 const TOTAL_PIX = SIZE * SIZE;
-const cgolStopThresh = 0.3;
+const cgolStopThresh = 0.19;
 const dlaStopThresh = 0.46;
 const pixelSize = 16;
 const tickMS = 300;
